@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "name": "react-native-masonry-list",
+  "description": "An easy and simple to use React Native component to render a custom masonry layout for images.  Includes support for both iOS and Android.  Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).",
+  "keywords": [
+    "react-native-masonry-list",
+    "react-native",
+    "masonry",
+    "gallery",
+    "images",
+    "image layout",
+    "album",
+    "pictures",
+    "photo",
+    "ios",
+    "android"
+  ],
+  "homepage": "https://github.com/Luehang/react-native-masonry-list",
+  "author": {
+    "name": "Lue Hang",
+    "email": "lue_hang@hotmail.com",
+    "url": "https://www.luehangs.site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Luehang/react-native-masonry-list"
+  },
+  "bugs": {
+    "url": "https://github.com/Luehang/react-native-masonry-list/issues"
+  },
+  "directories": {
+    "example": "./example",
+    "src": "./src"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "data.task": "^3.1.2"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "react": "^16.6.3",
+    "react-native": "^0.57.7",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-native": "^3.5.0"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint index.js src/"
+  },
+  "license": "MIT"
+}
