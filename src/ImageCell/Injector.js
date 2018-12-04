@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default class Injector extends Component {
 	static propTypes = {
-		defaultComponent: PropTypes.object,
+		defaultComponent: PropTypes.func,
 		defaultProps: PropTypes.object,
 		injectant: PropTypes.func,
 		injectantProps: PropTypes.object
