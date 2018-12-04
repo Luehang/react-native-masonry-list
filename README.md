@@ -65,8 +65,7 @@ render() {
                     dimensions: { width: 1080, height: 1920 } },
                 { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"
                     // Optional: Does not require an id for each
-                    // image object, but is for good practice and
-                    // can be better for performance with the API.
+                    // image object, but is for good practice.
                     id: "blpccx4cn" },
                 { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
                 { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
@@ -94,6 +93,9 @@ render() {
 | `initialNumInColsToRender`    | `number`          | How many items to render in each column in the initial batch. | 2 |
 | `sorted`                      | `Boolean`         | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | false |
 | `imageContainerStyle`         | `Object`          | The styles object which is added to the Image component. | {} |
+| `customImageComponent`        | `React.Component` | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `Image` module import of react-native |
+| `customImageProps`            | `Object`          | An object to pass additional properties to the `customImageComponent` | |
+| `completeCustomComponent`     | `Function`        | Custom function to return a fully custom component for each image.  `completeCustomComponent({ source: Object, style: { width: number, height: number, margin: number }, data: Object })`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | |
 | `renderIndividualHeader`      | `Function`        | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data.  This function must return a React Component. | |
 | `renderIndividualFooter`      | `Function`        | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data.  This function must return a React Component. | |
 | `onPressImage`                | `Function`        | Custom function that is executed after a single tap on the image.  First params is the individual data. | |
