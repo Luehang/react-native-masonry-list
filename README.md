@@ -65,7 +65,7 @@ render() {
                     dimensions: { width: 1080, height: 1920 } },
                 { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"
                     // Optional: Does not require an id for each
-                    // image object, but is for good practice.
+                    // image object, but is for best practices.
                     id: "blpccx4cn" },
                 { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
                 { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
@@ -83,6 +83,8 @@ render() {
 ``<MasonryList />`` component accepts the following props...
 
 ### Props
+
+**Version ^1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
 
 | Props                         | Type              | Description                                                                                                                                                                                    | Default |
 |-------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
