@@ -33,6 +33,13 @@
     "src": "./src"
   },
   "main": "index.js",
+  "files": [
+    "/src",
+    "index.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "prop-types": "^15.6.2",
     "data.task": "^3.1.2"
