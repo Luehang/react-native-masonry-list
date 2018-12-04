@@ -20,6 +20,10 @@ export default class Masonry extends Component {
 		renderIndividualFooter: PropTypes.func,
 		masonryFlatListColProps: PropTypes.object,
 
+		customImageComponent: PropTypes.object,
+		customImageProps: PropTypes.object,
+		completeCustomComponent: PropTypes.func,
+
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 
@@ -175,6 +179,10 @@ export default class Masonry extends Component {
 								imageContainerStyle={this.props.imageContainerStyle}
 								spacing={this.props.spacing}
 								key={`MASONRY-COLUMN-${index}`}
+
+								customImageComponent={this.props.customImageComponent}
+								customImageProps={this.props.customImageProps}
+								completeCustomComponent={this.props.completeCustomComponent}
 
 								onPressImage={this.props.onPressImage}
 								onLongPressImage={this.props.onLongPressImage}

@@ -15,6 +15,10 @@ export default class Column extends Component {
 		imageContainerStyle: PropTypes.object,
 		spacing: PropTypes.number,
 
+		customImageComponent: PropTypes.object,
+		customImageProps: PropTypes.object,
+		completeCustomComponent: PropTypes.func,
+
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 
@@ -109,7 +113,9 @@ export default class Column extends Component {
 		// }
 		const {
 			renderIndividualHeader, renderIndividualFooter,
-			imageContainerStyle, onPressImage, onLongPressImage
+			imageContainerStyle, onPressImage, onLongPressImage,
+			customImageComponent, customImageProps,
+			completeCustomComponent
 		} = this.props;
 		const props = {
 			renderIndividualHeader, renderIndividualFooter,
@@ -123,6 +129,9 @@ export default class Column extends Component {
 				key={item.uri}
 				data={item}
 				source={item.source}
+				customImageComponent={customImageComponent}
+				customImageProps={customImageProps}
+				completeCustomComponent={completeCustomComponent}
 				onPressImage={onPressImage}
 				onLongPressImage={onLongPressImage}
 			/>
