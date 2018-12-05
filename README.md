@@ -37,7 +37,7 @@ $ yarn add react-native-masonry-list
 
 Add an ``import`` to the top of the file.  At minimal, declare the ``MasonryList`` component in the ``render()`` method providing an array of data for the ``images`` prop.
 
-**Local images must have a defined dimensions field with width and height.**
+> **Local images must have a defined dimensions field with width and height.**
 
 ```javascript
 import MasonryList from "react-native-masonry-list";
