@@ -86,23 +86,23 @@ render() {
 
 **Version ^1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
 
-| Props                         | Type              | Description                                                                                                                                                                                    | Default |
-|-------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| `images`                      | `Array`           | An array of objects.  **Local images must have a defined dimensions field with width and height.**  `source`, `source.uri`, `uri`, `URI`, `url` or `URL` is a required field (if multiple similar fields in an image object, priority will go from start `source` to last `URL`). EX. `[{ source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg", dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]`  | Required |
-| `columns`                     | `number`          | Desired number of columns. | 2 |
-| `spacing`                     | `number`          | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | 1 |
-| `initialColToRender`          | `number`          | How many columns to render in the initial batch. | 2 |
-| `initialNumInColsToRender`    | `number`          | How many items to render in each column in the initial batch. | 2 |
-| `sorted`                      | `Boolean`         | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | false |
-| `imageContainerStyle`         | `Object`          | The styles object which is added to the Image component. | {} |
-| `customImageComponent`        | `React.Component` | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `Image` module import of react-native |
-| `customImageProps`            | `Object`          | An object to pass additional properties to the `customImageComponent` | |
-| `completeCustomComponent`     | `Function`        | Custom function to return a fully custom component for each image.  `completeCustomComponent({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | |
-| `renderIndividualHeader`      | `Function`        | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data.  This function must return a React Component. | |
-| `renderIndividualFooter`      | `Function`        | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data.  This function must return a React Component. | |
-| `onPressImage`                | `Function`        | Custom function that is executed after a single tap on the image.  First params is the individual data. | |
-| `onLongPressImage`            | `Function`        | Custom function that is executed after a long press on the image.  First params is the individual data. | |
-| `masonryFlatListColProps`     | `Object`          | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | {} |
+| Props                         | Description                                                                                                                                                                                    | Type              | Default |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
+| `images`                      | An array of objects.  **Local images must have a defined dimensions field with width and height.**  `source`, `source.uri`, `uri`, `URI`, `url` or `URL` is a required field (if multiple similar fields in an image object, priority will go from start `source` to last `URL`). EX. `[{ source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg", dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]`  | `Array` | Required |
+| `columns`                     | Desired number of columns. | `number` | 2 |
+| `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
+| `initialColToRender`          | How many columns to render in the initial batch. | `number` | 2 |
+| `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 2 |
+| `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
+| `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
+| `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `React.Component` | `Image` module import of react-native |
+| `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `Object` | |
+| `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `completeCustomComponent({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
+| `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data.  This function must return a React Component. | `Function` | |
+| `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data.  This function must return a React Component. | `Function` | |
+| `onPressImage`                | Custom function that is executed after a single tap on the image.  First params is the individual data. | `Function` | |
+| `onLongPressImage`            | Custom function that is executed after a long press on the image.  First params is the individual data. | `Function` | |
+| `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
