@@ -6,6 +6,7 @@ import { resolveImage, resolveLocal } from "./model";
 import Column from "./Column";
 
 export default class Masonry extends Component {
+	_mounted = false;
 	_batchOne = [];
 
 	static propTypes = {
@@ -52,8 +53,13 @@ export default class Masonry extends Component {
 		Dimensions.addEventListener("change", (window) => this.setState(state => ({ initialOrientation: !state.initialOrientation })));
 	}
 
-	componentDidMount() {
+	componentWillMount() {
+		this._mounted = true;
 		this.resolveImages(this.props.images, this.props.columns);
+	}
+
+	componentWillUnmount() {
+		this._mounted = false;
 	}
 
 	resolveImages(images, columns, offSet = 0) {
@@ -138,12 +144,14 @@ export default class Masonry extends Component {
 	_setParentDimensions(event) {
 		const {width, height} = event.nativeEvent.layout;
 
-		this.setState({
-			dimensions: {
-				width,
-				height
-			}
-		});
+		if (this._mounted) {
+			this.setState({
+				dimensions: {
+					width,
+					height
+				}
+			});
+		}
 	}
 
 	_onCallEndReach = () => {
