@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import {
 	TouchableOpacity
 } from "react-native";
 import PropTypes from "prop-types";
 import ImageComponent from "./ImageComponent";
 
-export default class TouchableImageComponent extends Component {
+export default class TouchableImageComponent extends PureComponent {
 	static propTypes = {
 		data: PropTypes.object.isRequired,
 		source: PropTypes.any.isRequired,

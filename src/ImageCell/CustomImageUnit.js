@@ -1,7 +1,7 @@
-import { Component } from "react";
+import { PureComponent } from "react";
 import PropTypes from "prop-types";
 
-export default class CustomImageUnit extends Component {
+export default class CustomImageUnit extends PureComponent {
 	static propTypes = {
 		data: PropTypes.object.isRequired,
 		source: PropTypes.any.isRequired,
