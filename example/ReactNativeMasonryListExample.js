@@ -28,7 +28,6 @@ export default class ReactNativeMasonryListExample extends Component {
                     <Text style={styles.title}>MasonryList</Text>
                 </View>
                 <MasonryList
-                    columns={2}
                     images={testData}
                     renderIndividualHeader={(data) => {
                         return (
