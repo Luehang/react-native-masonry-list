@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { View, FlatList } from "react-native";
 import PropTypes from "prop-types";
 
 import ImageCell from "./ImageCell";
 
 // Takes props and returns a masonry column
-export default class Column extends Component {
+export default class Column extends PureComponent {
 	static propTypes = {
 		data: PropTypes.array,
 		columns: PropTypes.number,
