@@ -97,11 +97,11 @@ render() {
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
 | `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `React.Component` | `Image` module import of react-native |
 | `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `Object` | |
-| `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `completeCustomComponent({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
-| `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data.  This function must return a React Component. | `Function` | |
-| `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data.  This function must return a React Component. | `Function` | |
-| `onPressImage`                | Custom function that is executed after a single tap on the image.  First params is the individual data. | `Function` | |
-| `onLongPressImage`            | Custom function that is executed after a long press on the image.  First params is the individual data. | `Function` | |
+| `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
+| `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
+| `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
+| `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: Object) => void` | `Function` | |
+| `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object) => void` | `Function` | |
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
