@@ -5,9 +5,8 @@ import PropTypes from "prop-types";
 import { resolveImage, resolveLocal } from "./model";
 import Column from "./Column";
 
-export default class Masonry extends Component {
+export default class MasonryList extends Component {
 	_mounted = false;
-	_batchOne = [];
 
 	static propTypes = {
 		images: PropTypes.array.isRequired,
@@ -64,10 +63,11 @@ export default class Masonry extends Component {
 
 	resolveImages(images, columns, offSet = 0) {
 		const firstRenderNum = this.props.initialColToRender * this.props.initialNumInColsToRender;
+		var unsortedIndex = 0;
+		var renderIndex = 0;
+		var batchOne = [];
 		images
-			.map((image, index) => assignObjectColumn(columns, index, image))
-			.map((image, index) => assignObjectIndex(offSet + index, image))
-			.map((image, index) => {
+			.map((image) => {
 				const source = image.source
 					? image.source : image.uri
 					? { uri: image.uri } : image.URI
@@ -88,7 +88,7 @@ export default class Masonry extends Component {
 
 				return image;
 			})
-			.map((image, index) => {
+			.map((image) => {
 				const uri = image.source && image.source.uri
 					? image.source.uri : image.uri
 					? image.uri : image.URI
@@ -116,24 +116,34 @@ export default class Masonry extends Component {
 						// eslint-disable-next-line handle-callback-err, no-console
 						(err) => console.warn("react-native-masonry-list", "Image failed to load."),
 						(resolvedImage) => {
-							if (firstRenderNum > index + 1) {
-								const sortedData = _insertIntoColumn(resolvedImage, this._batchOne, this.props.sorted);
-								this._batchOne = sortedData;
+							if (this.props.sorted) {
+								resolvedImage.index = index;
+								resolvedImage.column = index % columns;
+							} else {
+								resolvedImage.index = unsortedIndex;
+								resolvedImage.column = unsortedIndex % columns;
+								unsortedIndex++;
 							}
 
-							if (firstRenderNum === index + 1) {
-								const sortedData = _insertIntoColumn(resolvedImage, this._batchOne, this.props.sorted);
-								this._batchOne = sortedData;
-								this.setState({_sortedData: this._batchOne});
+							if (firstRenderNum - 1 > renderIndex) {
+								const sortedData = _insertIntoColumn(resolvedImage, batchOne, this.props.sorted);
+								batchOne = sortedData;
+								renderIndex++;
 							}
-
-							if (firstRenderNum < index + 1) {
+							else if (firstRenderNum - 1 === renderIndex) {
+								const sortedData = _insertIntoColumn(resolvedImage, batchOne, this.props.sorted);
+								batchOne = sortedData;
+								this.setState({_sortedData: batchOne});
+								renderIndex++;
+							}
+							else if (firstRenderNum - 1 <= renderIndex) {
 								this.setState(state => {
 									const sortedData = _insertIntoColumn(resolvedImage, state._sortedData, this.props.sorted);
 									return {
 										_sortedData: sortedData
 									};
 								});
+								renderIndex++;
 							}
 						}
 					);
@@ -155,9 +165,8 @@ export default class Masonry extends Component {
 	}
 
 	_onCallEndReach = () => {
-		if (this.props.masonryFlatListColProps && this.props.masonryFlatListColProps.onEndReached) {
+		this.props.masonryFlatListColProps &&
 			this.props.masonryFlatListColProps.onEndReached();
-		}
 	}
 
 	render() {
@@ -205,13 +214,6 @@ export default class Masonry extends Component {
 		);
 	}
 }
-
-// assignObjectColumn :: Number -> [Objects] -> [Objects]
-export const assignObjectColumn = (nColumns, index, targetObject) => ({...targetObject, ...{ column: index % nColumns }});
-
-// Assigns an `index` property` from images={data}` for later sorting.
-// assignObjectIndex :: (Number, Object) -> Object
-export const assignObjectIndex = (index, targetObject) => ({...targetObject, ...{ index }});
 
 // Returns a copy of the dataSet with resolvedImage in correct place
 // (resolvedImage, dataSetA, bool) -> dataSetB
