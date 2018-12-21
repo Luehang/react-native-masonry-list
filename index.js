@@ -1,3 +1,3 @@
 import MasonryList from "./src";
 
-module.exports = MasonryList;
+export default MasonryList;
