@@ -1,12 +1,32 @@
 <a href="https://luehangs.site/lue_hang/projects/react-native-masonry-list"><img src="https://luehangs.site/images/react-native-masonry-list-main.jpg" alt="react-native-masonry-list"/></a>
 
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH LABS"/></a>
+<br/>
+<br/>
+
 > An easy and simple to use React Native component to render a custom masonry layout for images. Includes support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
-<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
 
 ![react-native-masonry-list](https://www.luehangs.site/videos/react-native-masonry-list-demo.gif)
 
-Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH BLOG](https://www.luehangs.site).
+Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
+
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
 
 ## Index
 
@@ -18,6 +38,15 @@ Learn more about React Native with project examples along with Cyber Security an
 - [Author](#author)
 - [Contribute](#contribute)
 - [License](#license)
+
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
 
 ## Install
 
@@ -32,6 +61,15 @@ or
 ```bash
 $ yarn add react-native-masonry-list
 ```
+
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
 
 ## Usage Example
 
@@ -76,11 +114,17 @@ render() {
 //...
 ```
 
-<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+<br/>
+<br/>
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH LABS"/></a>
+<br/>
+<br/>
 
 ## API
 
 ``<MasonryList />`` component accepts the following props...
+
+<br/>
 
 ### Props
 
@@ -104,7 +148,11 @@ render() {
 | `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object) => void` | `Function` | |
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
 
-<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+<br/>
+<br/>
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH LABS"/></a>
+<br/>
+<br/>
 
 ## Example Project
 
@@ -113,6 +161,8 @@ Perform steps 1-2 to run locally:
 1. [Clone the Repo](#1-clone-the-repo)
 2. [Install and Run](#2-install-and-run)
 
+<br/>
+
 ### 1. Clone the Repo
 
 **Clone** `react-native-masonry-list` locally. In a terminal, run:
@@ -120,6 +170,8 @@ Perform steps 1-2 to run locally:
 ```bash
 $ git clone https://github.com/Luehang/react-native-masonry-list.git react-native-masonry-list
 ```
+
+<br/>
 
 ### 2. Install and Run
 
@@ -140,7 +192,11 @@ $ cd react-native-masonry-list/example/
 	3. emulator running in separate terminal
 	4. npm run android
 
-<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+<br/>
+<br/>
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH LABS"/></a>
+<br/>
+<br/>
 
 ## Author
 
@@ -150,17 +206,39 @@ $ cd react-native-masonry-list/example/
 
 Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
+
 ## Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-masonry-list/pulls) are welcomed.
+
+<br/>
 
 ### Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-masonry-list/issues).
 
+<br/>
+
 ### Contributors
 
 Contributors will be posted here.
+
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
 
 ## License
 
