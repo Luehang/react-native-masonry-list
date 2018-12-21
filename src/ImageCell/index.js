@@ -30,6 +30,7 @@ export default class ImageCell extends PureComponent {
 
 		return onPressImage || onLongPressImage
 			? <TouchableImageComponent
+				data={data}
 				width={data.width}
 				height={data.height}
 				gutter={data.gutter}
