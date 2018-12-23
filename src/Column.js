@@ -12,6 +12,7 @@ export default class Column extends PureComponent {
 		initialNumInColsToRender: PropTypes.number,
 		parentDimensions: PropTypes.object,
 		columnKey: PropTypes.string,
+		backgroundColor: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
 		spacing: PropTypes.number,
 
@@ -148,7 +149,7 @@ export default class Column extends PureComponent {
 					width: this.state.columnWidth,
 					overflow: "hidden",
 					flex: 1,
-					backgroundColor: "#fff",
+					backgroundColor: this.props.backgroundColor,
 					flexDirection: "column"
 				}}>
 				<FlatList

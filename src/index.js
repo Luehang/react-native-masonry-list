@@ -15,6 +15,7 @@ export default class MasonryList extends Component {
 		initialColToRender: PropTypes.number,
 		initialNumInColsToRender: PropTypes.number,
 		sorted: PropTypes.bool,
+		backgroundColor: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
 		renderIndividualHeader: PropTypes.func,
 		renderIndividualFooter: PropTypes.func,
@@ -37,6 +38,7 @@ export default class MasonryList extends Component {
 		initialColToRender: 2,
 		initialNumInColsToRender: 2,
 		sorted: false,
+		backgroundColor: "#fff",
 		imageContainerStyle: {},
 		onEndReachedThreshold: 25
 	};
@@ -173,7 +175,10 @@ export default class MasonryList extends Component {
 		return (
 			<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
 				<FlatList
-					style={{padding: (this.state.dimensions.width / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
+					style={{
+						padding: (this.state.dimensions.width / 100) * this.props.spacing / 2,
+						backgroundColor: this.props.backgroundColor
+					}}
 					contentContainerStyle={{
 						justifyContent: "space-between",
 						flexDirection: "row",
@@ -193,6 +198,7 @@ export default class MasonryList extends Component {
 								columns={this.props.columns}
 								initialNumInColsToRender={this.props.initialNumInColsToRender}
 								parentDimensions={this.state.dimensions}
+								backgroundColor={this.props.backgroundColor}
 								imageContainerStyle={this.props.imageContainerStyle}
 								spacing={this.props.spacing}
 								key={`MASONRY-COLUMN-${index}`}
