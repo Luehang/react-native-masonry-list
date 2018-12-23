@@ -232,6 +232,10 @@ Not sure where to start, or a beginner? Take a look at the [issues page](https:/
 
 Contributors will be posted here.
 
+<a href="https://github.com/sahdev0">
+<img src="https://www.luehangs.site/images/react-native-masonry-list-contributor-circle-100px-sahdev0.png"/>
+</a>
+
 <br/>
 <br/>
 <br/>
