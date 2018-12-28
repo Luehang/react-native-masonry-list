@@ -48,8 +48,8 @@
     "react-native": "*"
   },
   "devDependencies": {
-    "react": "^16.6.3",
-    "react-native": "^0.57.7",
+    "react": "16.6.3",
+    "react-native": "0.57.7",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
     "eslint-plugin-flowtype": "^3.2.0",
@@ -59,7 +59,7 @@
     "eslint-plugin-react-native": "^3.5.0"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint index.js src/"
+    "lint": "./node_modules/.bin/eslint src/"
   },
   "license": "MIT"
 }
