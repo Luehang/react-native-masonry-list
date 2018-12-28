@@ -1,5 +1,5 @@
-import { View, FlatList, Dimensions } from "react-native";
 import React, { Component } from "react";
+import { Platform, View, FlatList, Dimensions } from "react-native";
 import PropTypes from "prop-types";
 
 import { resolveImage, resolveLocal } from "./model";
@@ -34,9 +34,9 @@ export default class MasonryList extends Component {
 	static defaultProps = {
 		images: [],
 		columns: 2,
+		initialColToRender: Platform.OS === "ios" ? 2 : null,
+		initialNumInColsToRender: 1,
 		spacing: 1,
-		initialColToRender: 2,
-		initialNumInColsToRender: 2,
 		sorted: false,
 		backgroundColor: "#fff",
 		imageContainerStyle: {},
@@ -65,9 +65,34 @@ export default class MasonryList extends Component {
 
 	resolveImages(images, columns, offSet = 0) {
 		const firstRenderNum = this.props.initialColToRender * this.props.initialNumInColsToRender;
-		var unsortedIndex = 0;
-		var renderIndex = 0;
-		var batchOne = [];
+		let unsortedIndex = 0;
+		let renderIndex = 0;
+		let batchOne = [];
+
+		let columnHeightTotals = [];
+		let columnCounting = 1;
+		let columnHighestHeight = null;
+		function _assignColumns(image, nColumns) {
+			const columnIndex = columnCounting - 1;
+			const { height } = image.dimensions;
+
+			if (!columnHeightTotals[columnCounting - 1]) {
+				columnHeightTotals[columnCounting - 1] = height;
+			} else {
+				columnHeightTotals[columnCounting - 1] = columnHeightTotals[columnCounting - 1] + height;
+			}
+
+			if (!columnHighestHeight) {
+				columnHighestHeight = columnHeightTotals[columnCounting - 1];
+				columnCounting = columnCounting < nColumns ? columnCounting + 1 : 1;
+			} else if (columnHighestHeight <= columnHeightTotals[columnCounting - 1]) {
+				columnHighestHeight = columnHeightTotals[columnCounting - 1];
+				columnCounting = columnCounting < nColumns ? columnCounting + 1 : 1;
+			}
+
+			return columnIndex;
+		}
+
 		images
 			.map((image) => {
 				const source = image.source
@@ -120,12 +145,12 @@ export default class MasonryList extends Component {
 						(resolvedImage) => {
 							if (this.props.sorted) {
 								resolvedImage.index = index;
-								resolvedImage.column = index % columns;
 							} else {
 								resolvedImage.index = unsortedIndex;
-								resolvedImage.column = unsortedIndex % columns;
 								unsortedIndex++;
 							}
+
+							resolvedImage.column = _assignColumns(resolvedImage, columns);
 
 							if (firstRenderNum - 1 > renderIndex) {
 								const sortedData = _insertIntoColumn(resolvedImage, batchOne, this.props.sorted);
@@ -188,7 +213,11 @@ export default class MasonryList extends Component {
 					onEndReachedThreshold={this.props.onEndReachedThreshold}
 					{...this.props.masonryFlatListColProps}
 					onEndReached={this._onCallEndReach}
-					initialNumToRender={this.props.initialColToRender}
+					initialNumToRender={
+						this.props.initialColToRender
+							? this.props.initialColToRender
+							: this.props.columns
+					}
 					keyExtractor={(item, index) => "COLUMN-" + index.toString()}
 					data={this.state._sortedData}
 					renderItem={({item, index}) => {
@@ -221,23 +250,18 @@ export default class MasonryList extends Component {
 	}
 }
 
-// Returns a copy of the dataSet with resolvedImage in correct place
-// (resolvedImage, dataSetA, bool) -> dataSetB
 export function _insertIntoColumn (resolvedImage, dataSet, sorted) {
 	let dataCopy = dataSet.slice();
 	const columnIndex = resolvedImage.column;
 	const column = dataSet[columnIndex];
 
 	if (column) {
-		// Append to existing "row"/"column"
 		let images = [...column, resolvedImage];
 		if (sorted) {
-			// Sort images according to the index of their original array position
 			images = images.sort((a, b) => (a.index < b.index) ? -1 : 1);
 		}
 		dataCopy[columnIndex] = images;
 	} else {
-		// Pass it as a new "row" for the data source
 		dataCopy = [...dataCopy, [resolvedImage]];
 	}
 
