@@ -27,13 +27,14 @@ export default class ImageCell extends PureComponent {
 			onLongPressImage, customImageComponent,
 			customImageProps
 		} = this.props;
+		const { width, height, gutter } = data.masonryDimensions;
 
 		return onPressImage || onLongPressImage
 			? <TouchableImageComponent
 				data={data}
-				width={data.width}
-				height={data.height}
-				gutter={data.gutter}
+				width={width}
+				height={height}
+				gutter={gutter}
 				source={source}
 				imageContainerStyle={imageContainerStyle}
 				customImageComponent={customImageComponent}
@@ -43,9 +44,9 @@ export default class ImageCell extends PureComponent {
 				onLongPressImage={onLongPressImage}
 			/>
 			: <ImageComponent
-				width={data.width}
-				height={data.height}
-				gutter={data.gutter}
+				width={width}
+				height={height}
+				gutter={gutter}
 				source={source}
 				imageContainerStyle={imageContainerStyle}
 				customImageComponent={customImageComponent}
@@ -57,10 +58,14 @@ export default class ImageCell extends PureComponent {
 		const {
 			data, source, completeCustomComponent
 		} = this.props;
+		const { width, height, gutter } = data.masonryDimensions;
 
 		return (
 			<CustomImageUnit
 				data={data}
+				width={width}
+				height={height}
+				gutter={gutter}
 				source={source}
 				completeCustomComponent={completeCustomComponent}
 			/>
@@ -74,12 +79,10 @@ export default class ImageCell extends PureComponent {
 			completeCustomComponent
 		} = this.props;
 
-		const renderHeader = (renderIndividualHeader)
-			? renderIndividualHeader(data)
-			: null;
-		const renderFooter = (renderIndividualFooter)
-			? renderIndividualFooter(data)
-			: null;
+		const renderHeader = renderIndividualHeader &&
+			renderIndividualHeader(data);
+		const renderFooter = renderIndividualFooter &&
+			renderIndividualFooter(data);
 
 		return (
 			<View>

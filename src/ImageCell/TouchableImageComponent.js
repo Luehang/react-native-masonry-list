@@ -8,6 +8,9 @@ import ImageComponent from "./ImageComponent";
 export default class TouchableImageComponent extends PureComponent {
 	static propTypes = {
 		data: PropTypes.object.isRequired,
+		width: PropTypes.number.isRequired,
+		height: PropTypes.number.isRequired,
+		gutter: PropTypes.number.isRequired,
 		source: PropTypes.any.isRequired,
 		imageContainerStyle: PropTypes.object,
 		customImageComponent: PropTypes.object,
@@ -18,7 +21,8 @@ export default class TouchableImageComponent extends PureComponent {
 
 	render() {
 		const {
-			data, source, imageContainerStyle, onPressImage,
+			data, width, height, gutter, source,
+			imageContainerStyle, onPressImage,
 			onLongPressImage, customImageComponent,
 			customImageProps
 		} = this.props;
@@ -27,9 +31,9 @@ export default class TouchableImageComponent extends PureComponent {
 				onPress={() => onPressImage && onPressImage(data)}
 				onLongPress={() => onLongPressImage && onLongPressImage(data)}>
 				<ImageComponent
-					width={data.width}
-					height={data.height}
-					gutter={data.gutter}
+					width={width}
+					height={height}
+					gutter={gutter}
 					source={source}
 					imageContainerStyle={imageContainerStyle}
 					customImageComponent={customImageComponent}

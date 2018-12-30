@@ -127,6 +127,10 @@ export default class MasonryList extends Component {
 					return resolveLocal(image);
 				}
 
+				if (image.width && image.height) {
+					return resolveLocal(image);
+				}
+
 				if (uri) {
 					return resolveImage(image);
 				} else {
@@ -193,6 +197,7 @@ export default class MasonryList extends Component {
 
 	_onCallEndReach = () => {
 		this.props.masonryFlatListColProps &&
+		this.props.masonryFlatListColProps.onEndReached &&
 			this.props.masonryFlatListColProps.onEndReached();
 	}
 

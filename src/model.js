@@ -28,4 +28,16 @@ export const resolveLocal = (data) => {
 		// eslint-disable-next-line
 		}, (err) => reject(err));
 	}
+	if (data.width && data.height) {
+		return new Task((reject, resolve) => {
+			resolve({
+				...data,
+				dimensions: {
+					width: data.width,
+					height: data.height
+				}
+			});
+		// eslint-disable-next-line
+		}, (err) => reject(err));
+	}
 };

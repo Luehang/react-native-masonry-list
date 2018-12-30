@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 import ImageCell from "./ImageCell";
 
-// Takes props and returns a masonry column
 export default class Column extends PureComponent {
 	static propTypes = {
 		data: PropTypes.array,
@@ -47,16 +46,11 @@ export default class Column extends PureComponent {
 		});
 	}
 
-	// Transforms an array of images with dimensions scaled according to the
-	// column it is within
-	// _resizeImages :: Data, parentDimensions. nColumns -> ResizedImage
 	_resizeImages (data, parentDimensions, nColumns) {
 		return Object.keys(data).map((key) => {
 			const image = data[key];
 			const imageSizedForColumn =
 				this._resizeByColumns(data[key].dimensions, parentDimensions, nColumns);
-			// Return a image object that width will be equivilent to
-			// the column dimension, while retaining original image properties
 			return {
 				...image,
 				...imageSizedForColumn
@@ -64,8 +58,6 @@ export default class Column extends PureComponent {
 		});
 	}
 
-	// Resize image while maintain aspect ratio
-	// _resizeByColumns :: ImgDimensions , parentDimensions, nColumns  -> AdjustedDimensions
 	_resizeByColumns (imgDimensions = { width: 0, height: 0 }, parentDimensions, nColumns = 2) {
 		const {
 			// height,
@@ -90,11 +82,9 @@ export default class Column extends PureComponent {
 		const newWidth = imgDimensions.width / divider;
 		const newHeight = imgDimensions.height / divider;
 
-		return { width: newWidth, height: newHeight, gutter: gutterSize };
+		return { masonryDimensions: { width: newWidth, height: newHeight, gutter: gutterSize } };
 	}
 
-	// Renders the "bricks" within the columns
-	// _renderBrick :: images -> [TouchableTag || ImageTag...]
 	_renderBrick = ({item, index}) => {
 		// Example Data Structure
 		// {
@@ -139,7 +129,6 @@ export default class Column extends PureComponent {
 		);
 	}
 
-	// _keyExtractor :: item -> id
 	_keyExtractor = (item, index) => ("IMAGE-CELL-" + index.toString() + "---" + (item.id ? item.id : "0"));
 
 	render() {
