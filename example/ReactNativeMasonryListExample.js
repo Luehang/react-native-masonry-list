@@ -32,7 +32,7 @@ export default class ReactNativeMasonryListExample extends Component {
                         return (
                             <TouchableWithoutFeedback
                                 onPress={() => Linking.openURL("https://luehangs.site")}>
-                                <View style={[styles.masonryHeader, {width: data.width}]}>
+                                <View style={[styles.masonryHeader, {width: data.masonryDimensions.width}]}>
                                     <Image
                                         source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
                                         style={styles.userPic} />
