@@ -95,6 +95,11 @@ render() {
                     // it will throw an error.
                     dimensions: { width: 1080, height: 1920 }
                 },
+                { source: require("yourApp/image.png"),
+                    // An alternative to the dimensions field.
+                    // This will also be acceptable.
+                    width: 1080,
+                    height: 1920 },
                 { source: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" } },
                 { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
                     // Optional: Adding a dimensions field with
