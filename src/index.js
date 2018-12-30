@@ -34,7 +34,7 @@ export default class MasonryList extends Component {
 	static defaultProps = {
 		images: [],
 		columns: 2,
-		initialColToRender: Platform.OS === "ios" ? 2 : null,
+		initialColToRender: null,
 		initialNumInColsToRender: 1,
 		spacing: 1,
 		sorted: false,
