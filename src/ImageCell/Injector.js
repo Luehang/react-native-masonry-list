@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-export default class Injector extends PureComponent {
+export default class Injector extends React.PureComponent {
 	static propTypes = {
 		defaultComponent: PropTypes.oneOfType([
 			PropTypes.func,

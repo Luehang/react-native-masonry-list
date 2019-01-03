@@ -1,11 +1,9 @@
-import React, { PureComponent } from "react";
-import {
-	Image
-} from "react-native";
+import React from "react";
+import { Image } from "react-native";
 import PropTypes from "prop-types";
 import Injector from "./Injector";
 
-export default class ImageComponent extends PureComponent {
+export default class ImageComponent extends React.PureComponent {
 	static propTypes = {
 		width: PropTypes.number.isRequired,
 		height: PropTypes.number.isRequired,
@@ -33,6 +31,7 @@ export default class ImageComponent extends PureComponent {
 				width: width,
 				height: height,
 				margin: gutter / 2,
+				backgroundColor: "gainsboro",
 				...imageContainerStyle
 			}
 		};

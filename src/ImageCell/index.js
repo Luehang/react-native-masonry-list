@@ -1,13 +1,11 @@
-import React, { PureComponent } from "react";
-import {
-	View
-} from "react-native";
+import React from "react";
+import { View } from "react-native";
 import PropTypes from "prop-types";
 import ImageComponent from "./ImageComponent";
 import TouchableImageComponent from "./TouchableImageComponent";
 import CustomImageUnit from "./CustomImageUnit";
 
-export default class ImageCell extends PureComponent {
+export default class ImageCell extends React.PureComponent {
 	static propTypes = {
 		data: PropTypes.object.isRequired,
 		source: PropTypes.any.isRequired,
