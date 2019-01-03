@@ -145,6 +145,7 @@ render() {
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
 | `backgroundColor`             | Set the color of the background. **Version \*1.3.0 update**. | `string` | "#fff"
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
+| `containerWidth`              | The width of the masonry list layout. Adding this will improve performance. **Version \*2.0.0 update** | `number` |
 | `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `React.Component` | `Image` module import of react-native |
 | `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `Object` | |
 | `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
