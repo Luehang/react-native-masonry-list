@@ -34,6 +34,7 @@ Learn more about React Native with project examples along with Cyber Security an
 - [Usage Example](#usage-example)
 - [API](#api)
 - [Props](#props)
+- [Helpful Hints](#helpful-hints)
 - [Example Project](#example-project)
 - [Author](#author)
 - [Contribute](#contribute)
@@ -137,7 +138,7 @@ render() {
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
-| `images`                      | An array of objects.  **Local images must have a defined dimensions field with width and height.**  `source`, `source.uri`, `uri`, `URI`, `url` or `URL` is a required field (if multiple similar fields in an image object, priority will go from start `source` to last `URL`). EX. `[{ source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg", dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]`  | `Array` | Required |
+| `images`                      | An array of objects.  **Local images must have a defined dimensions field with width and height.**  `source`, `source.uri`, `uri`, `URI`, `url` or `URL` is a required field (if multiple similar fields in an image object, priority will go from start `source` to last `URL`). **EX.** `[{ source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg", dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]`  | `Array` | Required |
 | `columns`                     | Desired number of columns. | `number` | 2 |
 | `initialColToRender`          | How many columns to render in the initial batch. | `number` | `columns` |
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
@@ -154,10 +155,90 @@ render() {
 | `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: Object) => void` | `Function` | |
 | `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object) => void` | `Function` | |
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
+| `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is **7** entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `array` | [] |
 
 <br/>
 <br/>
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH LABS"/></a>
+<br/>
+<br/>
+
+## Helpful Hints
+
+> **Version \*2.1.0 update (or greater versions):**  `itemSource` prop
+
+Props | Description | Type | Default
+------ | ------ | ------ | ------
+`itemSource` | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is **7** entries/properties to image source. | `array` | []
+
+Below is an example implementation of the `itemSource` prop.
+
+```javascript
+import MasonryList from "react-native-masonry-list";
+
+//...
+render() {
+    return (
+        <MasonryList
+            itemSource={["node", "image"]}
+            images={[
+                {
+                    node: {
+                        image: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" }
+                    }
+                },
+                {
+                    node: {
+                        image: { source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }
+                    }
+                },
+                {
+                    node: {
+                        image: { source: require("yourApp/image.png"),
+                            width: 1080,
+                            height: 1920 }
+                    }
+                },
+                {
+                    node: {
+                        image: { source: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" } }
+                    }
+                },
+                {
+                    node: {
+                        image: { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
+                            dimensions: { width: 1080, height: 1920 } }
+                    }
+                },
+                {
+                    node: {
+                        image: { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"
+                            id: "blpccx4cn" }
+                    }
+                },
+                {
+                    node: {
+                        image: { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" }
+                    }
+                },
+                {
+                    node: {
+                        image: { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" }
+                    }
+                }
+            ]}
+        />
+    );
+}
+//...
+```
+
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
 <br/>
 <br/>
 
