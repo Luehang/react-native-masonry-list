@@ -10,6 +10,7 @@ export default class ImageCell extends React.PureComponent {
 		data: PropTypes.object.isRequired,
 		source: PropTypes.any.isRequired,
 		imageContainerStyle: PropTypes.object,
+		masonryDimensions: PropTypes.object,
 		customImageComponent: PropTypes.object,
 		customImageProps: PropTypes.object,
 		completeCustomComponent: PropTypes.func,
@@ -23,9 +24,9 @@ export default class ImageCell extends React.PureComponent {
 		const {
 			data, source, imageContainerStyle, onPressImage,
 			onLongPressImage, customImageComponent,
-			customImageProps
+			customImageProps, masonryDimensions
 		} = this.props;
-		const { width, height, gutter } = data.masonryDimensions;
+		const { width, height, gutter } = masonryDimensions;
 
 		return onPressImage || onLongPressImage
 			? <TouchableImageComponent
@@ -54,9 +55,9 @@ export default class ImageCell extends React.PureComponent {
 
 	_renderCustomImage = () => {
 		const {
-			data, source, completeCustomComponent
+			data, source, completeCustomComponent, masonryDimensions
 		} = this.props;
-		const { width, height, gutter } = data.masonryDimensions;
+		const { width, height, gutter } = masonryDimensions;
 
 		return (
 			<CustomImageUnit

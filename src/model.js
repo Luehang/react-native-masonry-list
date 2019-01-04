@@ -1,16 +1,24 @@
 import { Image } from "react-native";
 import Task from "data.task";
+import { setItemSource } from "./utils";
 
-export const resolveImage = (data) => {
-	const uri = data.source && data.source.uri
-		? data.source.uri : data.uri
-		? data.uri : data.URI
-		? data.URI : data.url
-		? data.url : data.URL
-		? data.URL : undefined;
-
+export const resolveImage = (uri, image, data, itemSource) => {
+	if (data && itemSource && itemSource.length > 0) {
+		return new Task(
+			(reject, resolve) => {
+				Image.getSize(uri, (width, height) => {
+					image.dimensions = { width, height };
+					const resolvedData = setItemSource(data, itemSource, image);
+					resolve({
+						...resolvedData,
+					// eslint-disable-next-line
+					});
+				}, (err) => reject(err));
+			}
+		);
+	}
 	return new Task((reject, resolve) => Image.getSize(uri, (width, height) => resolve({
-		...data,
+		...image,
 		dimensions: {
 			width,
 			height
@@ -19,22 +27,43 @@ export const resolveImage = (data) => {
 	}), (err) => reject(err)));
 };
 
-export const resolveLocal = (data) => {
-	if (data.dimensions && data.dimensions.width && data.dimensions.height) {
+export const resolveLocal = (image, data, itemSource) => {
+	if (data && itemSource && itemSource.length > 0) {
+		if (image.dimensions && image.dimensions.width && image.dimensions.height) {
+			const resolvedData = setItemSource(data, itemSource, image);
+			return new Task((reject, resolve) => {
+				resolve({
+					...resolvedData
+				});
+			// eslint-disable-next-line
+			}, (err) => reject(err));
+		}
+		if (image.width && image.height) {
+			return new Task((reject, resolve) => {
+				image.dimensions = { width: image.width, height: image.height };
+				const resolvedData = setItemSource(data, itemSource, image);
+				resolve({
+					...resolvedData
+				});
+			// eslint-disable-next-line
+			}, (err) => reject(err));
+		}
+	}
+	if (image.dimensions && image.dimensions.width && image.dimensions.height) {
 		return new Task((reject, resolve) => {
 			resolve({
-				...data
+				...image
 			});
 		// eslint-disable-next-line
 		}, (err) => reject(err));
 	}
-	if (data.width && data.height) {
+	if (image.width && image.height) {
 		return new Task((reject, resolve) => {
 			resolve({
-				...data,
+				...image,
 				dimensions: {
-					width: data.width,
-					height: data.height
+					width: image.width,
+					height: image.height
 				}
 			});
 		// eslint-disable-next-line

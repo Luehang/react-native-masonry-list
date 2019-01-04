@@ -8,8 +8,9 @@ export default class Masonry extends React.PureComponent {
     _mounted = false;
 
     static propTypes = {
+        itemSource: PropTypes.array,
 		images: PropTypes.array.isRequired,
-		containerWidth: PropTypes.number,
+        containerWidth: PropTypes.number,
 
 		columns: PropTypes.number,
 		spacing: PropTypes.number,
@@ -33,6 +34,7 @@ export default class Masonry extends React.PureComponent {
     };
 
     static defaultProps = {
+        itemSource: [],
 		images: [],
 		columns: 2,
 		initialColToRender: null,
@@ -106,6 +108,7 @@ export default class Masonry extends React.PureComponent {
                 <MasonryList
                     layoutDimensions={this.state.layoutDimensions}
                     containerWidth={this.props.containerWidth}
+                    itemSource={this.props.itemSource}
 
                     images={this.props.images}
                     columns={this.props.columns}

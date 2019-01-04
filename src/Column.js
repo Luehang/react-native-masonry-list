@@ -2,10 +2,12 @@ import React from "react";
 import { View, FlatList } from "react-native";
 import PropTypes from "prop-types";
 
+import { getItemSource } from "./utils";
 import ImageCell from "./ImageCell";
 
 export default class Column extends React.PureComponent {
 	static propTypes = {
+        itemSource: PropTypes.array,
 		data: PropTypes.array,
 		initialNumInColsToRender: PropTypes.number,
 		layoutDimensions: PropTypes.object.isRequired,
@@ -46,20 +48,25 @@ export default class Column extends React.PureComponent {
 			renderIndividualHeader, renderIndividualFooter,
 			imageContainerStyle, onPressImage, onLongPressImage,
 			customImageComponent, customImageProps,
-			completeCustomComponent
+			completeCustomComponent, itemSource
 		} = this.props;
 		const props = {
 			renderIndividualHeader, renderIndividualFooter,
 			imageContainerStyle
 		};
 
+		const image = itemSource.length > 0
+			? getItemSource(item, itemSource)
+			: item;
+
 		return (
 			<ImageCell
 				{...props}
 
-				key={item.uri}
+				key={image.uri}
 				data={item}
-				source={item.source}
+				source={image.source}
+				masonryDimensions={image.masonryDimensions}
 				customImageComponent={customImageComponent}
 				customImageProps={customImageProps}
 				completeCustomComponent={completeCustomComponent}

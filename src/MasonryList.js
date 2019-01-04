@@ -3,10 +3,18 @@ import { FlatList } from "react-native";
 import PropTypes from "prop-types";
 
 import { resolveImage, resolveLocal } from "./model";
+import {
+	getItemSource,
+	setItemSource,
+	getImageSource,
+	getImageUri,
+	insertIntoColumn
+} from "./utils";
 import Column from "./Column";
 
 export default class MasonryList extends React.PureComponent {
 	static propTypes = {
+        itemSource: PropTypes.array,
 		images: PropTypes.array.isRequired,
 		layoutDimensions: PropTypes.object.isRequired,
 		containerWidth: PropTypes.number,
@@ -39,6 +47,7 @@ export default class MasonryList extends React.PureComponent {
 	componentWillMount() {
 		if (this.props.containerWidth) {
 			this.resolveImages(
+				this.props.itemSource,
 				this.props.images,
 				this.props.layoutDimensions,
 				this.props.columns,
@@ -56,6 +65,7 @@ export default class MasonryList extends React.PureComponent {
 			nextProps.layoutDimensions.height !== this.props.layoutDimensions.height &&
 			!this.props.containerWidth) {
 				this.resolveImages(
+					nextProps.itemSource,
 					nextProps.images,
 					nextProps.layoutDimensions,
 					nextProps.columns,
@@ -76,6 +86,7 @@ export default class MasonryList extends React.PureComponent {
 	}
 
 	resolveImages(
+		itemSource,
 		images,
 		layoutDimensions,
 		columns,
@@ -112,102 +123,177 @@ export default class MasonryList extends React.PureComponent {
 			return columnIndex;
 		}
 
-		images
-			.map((image) => {
-				const source = image.source
-					? image.source : image.uri
-					? { uri: image.uri } : image.URI
-					? { uri: image.URI } : image.url
-					? { uri: image.url } : image.URL
-					? { uri: image.URL } : undefined;
+		if (itemSource.length > 0) {
+			images
+				.map((item) => {
+					const image = getItemSource(item, itemSource);
+					const source = getImageSource(image);
+					const uri = getImageUri(image);
 
-				if (source) {
-					image.source = source;
-				} else {
-					/* eslint-disable no-console */
-					console.warn(
-						"react-native-masonry-list",
-						"Please provide a valid image field in " +
-						"data images. Ex. source, uri, URI, url, URL"
-					);
-					/* eslint-enable no-console */
-				}
+					if (source) {
+						image.source = source;
+					} else {
+						/* eslint-disable no-console */
+						console.warn(
+							"react-native-masonry-list",
+							"Please provide a valid image field in " +
+							"data images. Ex. source, uri, URI, url, URL"
+						);
+						/* eslint-enable no-console */
+					}
 
-				return image;
-			})
-			.map((image) => {
-				const uri = image.source && image.source.uri
-					? image.source.uri : image.uri
-					? image.uri : image.URI
-					? image.URI : image.url
-					? image.url : image.URL
-					? image.URL : undefined;
+					if (image.dimensions && image.dimensions.width && image.dimensions.height) {
+						return resolveLocal(image, item, itemSource);
+					}
 
-				if (image.dimensions && image.dimensions.width && image.dimensions.height) {
-					return resolveLocal(image);
-				}
+					if (image.width && image.height) {
+						return resolveLocal(image, item, itemSource);
+					}
 
-				if (image.width && image.height) {
-					return resolveLocal(image);
-				}
+					if (uri) {
+						return resolveImage(uri, image, item, itemSource);
+					} else {
+						/* eslint-disable no-console */
+						console.warn(
+							"react-native-masonry-list",
+							"Please provide dimensions for your local images."
+						);
+						/* eslint-enable no-console */
+					}
+				})
+				.map((resolveTask, index) => {
+					if (resolveTask && resolveTask.fork) {
+						resolveTask.fork(
+							// eslint-disable-next-line handle-callback-err, no-console
+							(err) => console.warn("react-native-masonry-list", "Image failed to load."),
+							(resolvedData) => {
+								const resolvedImage = getItemSource(resolvedData, itemSource);
+								if (sorted) {
+									resolvedData.index = index;
+								} else {
+									resolvedData.index = unsortedIndex;
+									unsortedIndex++;
+								}
 
-				if (uri) {
-					return resolveImage(image);
-				} else {
-					/* eslint-disable no-console */
-					console.warn(
-						"react-native-masonry-list",
-						"Please provide dimensions for your local images."
-					);
-					/* eslint-enable no-console */
-				}
-			})
-			.map((resolveTask, index) => {
-				if (resolveTask && resolveTask.fork) {
-					resolveTask.fork(
-						// eslint-disable-next-line handle-callback-err, no-console
-						(err) => console.warn("react-native-masonry-list", "Image failed to load."),
-						(resolvedImage) => {
-							if (sorted) {
-								resolvedImage.index = index;
-							} else {
-								resolvedImage.index = unsortedIndex;
-								unsortedIndex++;
+								resolvedImage.masonryDimensions =
+									this._getCalculatedDimensions(
+										resolvedImage.dimensions,
+										layoutDimensions.columnWidth,
+										layoutDimensions.gutterSize
+									);
+
+								resolvedData.column = _assignColumns(resolvedImage, columns);
+
+								const finalizedData = setItemSource(resolvedData, itemSource, resolvedImage);
+
+								if (firstRenderNum - 1 > renderIndex) {
+									const sortedData = insertIntoColumn(finalizedData, batchOne, sorted);
+									batchOne = sortedData;
+									renderIndex++;
+								}
+								else if (firstRenderNum - 1 === renderIndex) {
+									const sortedData = insertIntoColumn(finalizedData, batchOne, sorted);
+									batchOne = sortedData;
+									this.setState({_sortedData: batchOne});
+									renderIndex++;
+								}
+								else if (firstRenderNum - 1 <= renderIndex) {
+									this.setState(state => {
+										const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
+										return {
+											_sortedData: sortedData
+										};
+									});
+									renderIndex++;
+								}
 							}
+						);
+					}
+				});
+		} else {
+			images
+				.map((image) => {
+					const source = getImageSource(image);
+					const uri = getImageUri(image);
 
-							resolvedImage.masonryDimensions =
-								this._getCalculatedDimensions(
-									resolvedImage.dimensions,
-									layoutDimensions.columnWidth,
-									layoutDimensions.gutterSize
-								);
+					if (source) {
+						image.source = source;
+					} else {
+						/* eslint-disable no-console */
+						console.warn(
+							"react-native-masonry-list",
+							"Please provide a valid image field in " +
+							"data images. Ex. source, uri, URI, url, URL"
+						);
+						/* eslint-enable no-console */
+					}
 
-							resolvedImage.column = _assignColumns(resolvedImage, columns);
+					if (image.dimensions && image.dimensions.width && image.dimensions.height) {
+						return resolveLocal(image);
+					}
 
-							if (firstRenderNum - 1 > renderIndex) {
-								const sortedData = _insertIntoColumn(resolvedImage, batchOne, sorted);
-								batchOne = sortedData;
-								renderIndex++;
+					if (image.width && image.height) {
+						return resolveLocal(image);
+					}
+
+					if (uri) {
+						return resolveImage(uri, image);
+					} else {
+						/* eslint-disable no-console */
+						console.warn(
+							"react-native-masonry-list",
+							"Please provide dimensions for your local images."
+						);
+						/* eslint-enable no-console */
+					}
+				})
+				.map((resolveTask, index) => {
+					if (resolveTask && resolveTask.fork) {
+						resolveTask.fork(
+							// eslint-disable-next-line handle-callback-err, no-console
+							(err) => console.warn("react-native-masonry-list", "Image failed to load."),
+							(resolvedImage) => {
+								if (sorted) {
+									resolvedImage.index = index;
+								} else {
+									resolvedImage.index = unsortedIndex;
+									unsortedIndex++;
+								}
+
+								resolvedImage.masonryDimensions =
+									this._getCalculatedDimensions(
+										resolvedImage.dimensions,
+										layoutDimensions.columnWidth,
+										layoutDimensions.gutterSize
+									);
+
+								resolvedImage.column = _assignColumns(resolvedImage, columns);
+
+								if (firstRenderNum - 1 > renderIndex) {
+									const sortedData = insertIntoColumn(resolvedImage, batchOne, sorted);
+									batchOne = sortedData;
+									renderIndex++;
+								}
+								else if (firstRenderNum - 1 === renderIndex) {
+									const sortedData = insertIntoColumn(resolvedImage, batchOne, sorted);
+									batchOne = sortedData;
+									this.setState({_sortedData: batchOne});
+									renderIndex++;
+								}
+								else if (firstRenderNum - 1 <= renderIndex) {
+									this.setState(state => {
+										const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
+										return {
+											_sortedData: sortedData
+										};
+									});
+									renderIndex++;
+								}
 							}
-							else if (firstRenderNum - 1 === renderIndex) {
-								const sortedData = _insertIntoColumn(resolvedImage, batchOne, sorted);
-								batchOne = sortedData;
-								this.setState({_sortedData: batchOne});
-								renderIndex++;
-							}
-							else if (firstRenderNum - 1 <= renderIndex) {
-								this.setState(state => {
-									const sortedData = _insertIntoColumn(resolvedImage, state._sortedData, sorted);
-									return {
-										_sortedData: sortedData
-									};
-								});
-								renderIndex++;
-							}
-						}
-					);
-				}
-			});
+						);
+					}
+				});
+		}
 	}
 
 	_onCallEndReach = () => {
@@ -243,6 +329,7 @@ export default class MasonryList extends React.PureComponent {
 					return (
 						<Column
 							data={item}
+							itemSource={this.props.itemSource}
 							initialNumInColsToRender={this.props.initialNumInColsToRender}
 							layoutDimensions={this.props.layoutDimensions}
 							backgroundColor={this.props.backgroundColor}
@@ -265,22 +352,4 @@ export default class MasonryList extends React.PureComponent {
 			/>
 		);
 	}
-}
-
-export function _insertIntoColumn (resolvedImage, dataSet, sorted) {
-	let dataCopy = dataSet.slice();
-	const columnIndex = resolvedImage.column;
-	const column = dataSet[columnIndex];
-
-	if (column) {
-		let images = [...column, resolvedImage];
-		if (sorted) {
-			images = images.sort((a, b) => (a.index < b.index) ? -1 : 1);
-		}
-		dataCopy[columnIndex] = images;
-	} else {
-		dataCopy = [...dataCopy, [resolvedImage]];
-	}
-
-	return dataCopy;
 }
