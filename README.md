@@ -155,7 +155,7 @@ render() {
 | `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: Object) => void` | `Function` | |
 | `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object) => void` | `Function` | |
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
-| `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is **7** entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `array` | [] |
+| `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `array` | [] |
 
 <br/>
 <br/>
@@ -169,7 +169,7 @@ render() {
 
 Props | Description | Type | Default
 ------ | ------ | ------ | ------
-`itemSource` | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is **7** entries/properties to image source. | `array` | []
+`itemSource` | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source. | `array` | []
 
 Below is an example implementation of the `itemSource` prop.
 
