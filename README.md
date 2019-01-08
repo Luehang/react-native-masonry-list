@@ -309,7 +309,7 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 
 <br/>
 
-### :small_blue_diamond: Contributors
+### :large_blue_diamond: Contributors
 
 Contributors will be posted here.
 
