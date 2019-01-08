@@ -30,15 +30,15 @@
 
 # Index
 
-### 1.  [Install](#install)
-### 2.  [Usage Example](#usage-example)
-### 3.  [API](#api)
-### 4.  :books: [Props](#props)
-### 5.  [Helpful Hints](#helpful-hints)
-### 6.  [Example Project](#example-project)
-### 7.  [Author](#author)
-### 8.  [Contribute](#contribute)
-### 9.  [License](#license)
+### 1.  [Install](#large_blue_diamond-install)
+### 2.  [Usage Example](#large_blue_diamond-usage-example)
+### 3.  [API](#large_blue_diamond-api)
+### 4.  :books: [Props](#large_blue_diamond-props)
+### 5.  [Helpful Hints](#large_blue_diamond-helpful-hints)
+### 6.  [Example Project](#large_blue_diamond-example-project)
+### 7.  [Author](#large_blue_diamond-author)
+### 8.  [Contribute](#large_blue_diamond-contribute)
+### 9.  [License](#large_blue_diamond-license)
 
 <br/>
 <br/>
