@@ -251,7 +251,7 @@ Perform steps 1-2 to run locally:
 
 <br/>
 
-### 1. Clone the Repo
+### :small_blue_diamond: 1. Clone the Repo
 
 **Clone** `react-native-masonry-list` locally. In a terminal, run:
 
@@ -261,7 +261,7 @@ $ git clone https://github.com/Luehang/react-native-masonry-list.git react-nativ
 
 <br/>
 
-### 2. Install and Run
+### :small_blue_diamond: 2. Install and Run
 
 ```bash
 $ cd react-native-masonry-list/example/
@@ -309,19 +309,19 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 
 <br/>
 
-### Beginners
-
-Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-masonry-list/issues).
-
-<br/>
-
-### Contributors
+### :small_blue_diamond: Contributors
 
 Contributors will be posted here.
 
 <a href="https://github.com/sahdev0">
 <img src="https://www.luehangs.site/images/react-native-masonry-list-contributor-circle-100px-sahdev0.png"/>
 </a>
+
+<br/>
+
+### :small_blue_diamond: Beginners
+
+Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-masonry-list/issues).
 
 <br/>
 <br/>
