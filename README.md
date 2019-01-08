@@ -17,7 +17,7 @@
 
 ![react-native-masonry-list](https://www.luehangs.site/videos/react-native-masonry-list-demo.gif)
 
-Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
+#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
 
 <br/>
 <br/>
@@ -28,17 +28,17 @@ Learn more about React Native with project examples along with Cyber Security an
 <br/>
 <br/>
 
-## Index
+# Index
 
-- [Install](#install)
-- [Usage Example](#usage-example)
-- [API](#api)
-- [Props](#props)
-- [Helpful Hints](#helpful-hints)
-- [Example Project](#example-project)
-- [Author](#author)
-- [Contribute](#contribute)
-- [License](#license)
+### 1.  [Install](#install)
+### 2.  [Usage Example](#usage-example)
+### 3.  [API](#api)
+### 4.  :books: [Props](#props)
+### 5.  [Helpful Hints](#helpful-hints)
+### 6.  [Example Project](#example-project)
+### 7.  [Author](#author)
+### 8.  [Contribute](#contribute)
+### 9.  [License](#license)
 
 <br/>
 <br/>
@@ -49,7 +49,7 @@ Learn more about React Native with project examples along with Cyber Security an
 <br/>
 <br/>
 
-## Install
+## :large_blue_diamond: Install
 
 Type in the following to the command line to install the dependency.
 
@@ -72,11 +72,11 @@ $ yarn add react-native-masonry-list
 <br/>
 <br/>
 
-## Usage Example
+## :large_blue_diamond: Usage Example
 
 Add an ``import`` to the top of the file.  At minimal, declare the ``MasonryList`` component in the ``render()`` method providing an array of data for the ``images`` prop.
 
-> **Local images must have a defined dimensions field with width and height.**
+#### :information_source: Local images must have a defined dimensions field with width and height.
 
 ```javascript
 import MasonryList from "react-native-masonry-list";
@@ -126,15 +126,15 @@ render() {
 <br/>
 <br/>
 
-## API
+## :large_blue_diamond: API
 
 ``<MasonryList />`` component accepts the following props...
 
 <br/>
 
-### Props
+# :large_blue_diamond: Props
 
-**Version ^1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
+:information_source: **Version ^1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -163,9 +163,9 @@ render() {
 <br/>
 <br/>
 
-## Helpful Hints
+## :large_blue_diamond: Helpful Hints
 
-> **Version \*2.1.0 update (or greater versions):**  `itemSource` prop
+:information_source: **Version \*2.1.0 update (or greater versions):**  `itemSource` prop
 
 Props | Description | Type | Default
 ------ | ------ | ------ | ------
@@ -242,7 +242,7 @@ render() {
 <br/>
 <br/>
 
-## Example Project
+## :large_blue_diamond: Example Project
 
 Perform steps 1-2 to run locally:
 
@@ -286,7 +286,7 @@ $ cd react-native-masonry-list/example/
 <br/>
 <br/>
 
-## Author
+## :large_blue_diamond: Author
 
 <a href="https://www.facebook.com/lue.hang">
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
@@ -303,7 +303,7 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 <br/>
 <br/>
 
-## Contribute
+## :large_blue_diamond: Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-masonry-list/pulls) are welcomed.
 
@@ -332,6 +332,6 @@ Contributors will be posted here.
 <br/>
 <br/>
 
-## License
+## :large_blue_diamond: License
 
 MIT © [Lue Hang](https://luehangs.site), as found in the LICENSE file.
