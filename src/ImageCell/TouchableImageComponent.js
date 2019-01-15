@@ -26,8 +26,8 @@ export default class TouchableImageComponent extends React.PureComponent {
 		} = this.props;
 		return (
 			<TouchableOpacity
-				onPress={() => onPressImage && onPressImage(data)}
-				onLongPress={() => onLongPressImage && onLongPressImage(data)}>
+				onPress={() => onPressImage && onPressImage(data, data.index)}
+				onLongPress={() => onLongPressImage && onLongPressImage(data, data.index)}>
 				<ImageComponent
 					width={width}
 					height={height}
