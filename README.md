@@ -152,8 +152,8 @@ render() {
 | `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
 | `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
-| `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: Object) => void` | `Function` | |
-| `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object) => void` | `Function` | |
+| `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: Object, index: number) => void` | `Function` **index params included in Version \*2.2.0 update** | |
+| `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object, index: number) => void` | `Function` **index params included in Version \*2.2.0 update** | |
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
 | `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `array` | [] |
 
