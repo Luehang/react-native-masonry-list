@@ -49,14 +49,17 @@ export default class Masonry extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            layoutDimensions: this.props.containerWidth
-                ? {
+            layoutDimensions: this.props.containerWidth ?
+                {
                     width: this.props.containerWidth,
                     gutterSize: (this.props.containerWidth / 100) * this.props.spacing,
                     columnWidth: (this.props.containerWidth / this.props.columns) -
                         (((this.props.containerWidth / 100) * this.props.spacing) / 2)
                 }
-                : {}
+            :
+                {
+                    width: 0,
+                }
         };
     }
 
