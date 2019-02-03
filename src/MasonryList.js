@@ -306,6 +306,7 @@ export default class MasonryList extends React.PureComponent {
 		return (
 			<FlatList
 				style={{
+					flex: 1,
 					padding: (this.props.layoutDimensions.width / 100) * this.props.spacing / 2,
 					backgroundColor: this.props.backgroundColor
 				}}
@@ -323,7 +324,9 @@ export default class MasonryList extends React.PureComponent {
 						? this.props.initialColToRender
 						: this.props.columns
 				}
-				keyExtractor={(item, index) => "COLUMN-" + index.toString()}
+				keyExtractor={(item, index) => {
+					return "COLUMN-" + index.toString() + "/" + (this.props.columns - 1);
+				}}
 				data={this.state._sortedData}
 				renderItem={({item, index}) => {
 					return (

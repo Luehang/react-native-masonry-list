@@ -49,17 +49,19 @@ export default class Masonry extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            layoutDimensions: this.props.containerWidth ?
-                {
+			layoutDimensions: this.props.containerWidth ?
+				{
                     width: this.props.containerWidth,
-                    gutterSize: (this.props.containerWidth / 100) * this.props.spacing,
+					gutterSize: (this.props.containerWidth / 100) * this.props.spacing,
                     columnWidth: (this.props.containerWidth / this.props.columns) -
                         (((this.props.containerWidth / 100) * this.props.spacing) / 2)
                 }
-            :
-                {
-                    width: 0,
-                }
+			:
+				{
+					// Bug fix for displaying layout
+					// dimensions in scrolling views
+					width: 100,
+				}
         };
     }
 
@@ -104,7 +106,7 @@ export default class Masonry extends React.PureComponent {
         return (
             <View style={{flex: 1}}
                 onLayout={(event) => {
-                    if (!this.props.columnWidth) {
+                    if (!this.props.containerWidth) {
                         this._setParentDimensions(event, this.props.columns, this.props.spacing);
                     }
                 }}>

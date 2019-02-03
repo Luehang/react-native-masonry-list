@@ -89,6 +89,7 @@ export default class Column extends React.PureComponent {
 					flexDirection: "column"
 				}}>
 				<FlatList
+					style={{flex: 1}}
 					key={this.props.columnKey}
 					data={this.props.data}
 					keyExtractor={this._keyExtractor}
