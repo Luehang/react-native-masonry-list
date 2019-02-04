@@ -8,7 +8,10 @@ export default class Injector extends React.PureComponent {
 			PropTypes.object
 		]),
 		defaultProps: PropTypes.object,
-		injectant: PropTypes.func,
+		injectant: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.object
+		]),
 		injectantProps: PropTypes.object
 	}
 
