@@ -11,7 +11,10 @@ export default class TouchableImageComponent extends React.PureComponent {
 		gutter: PropTypes.number.isRequired,
 		source: PropTypes.any.isRequired,
 		imageContainerStyle: PropTypes.object,
-		customImageComponent: PropTypes.object,
+		customImageComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.object
+		]),
 		customImageProps: PropTypes.object,
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func

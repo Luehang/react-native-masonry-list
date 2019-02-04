@@ -11,7 +11,10 @@ export default class ImageCell extends React.PureComponent {
 		source: PropTypes.any.isRequired,
 		imageContainerStyle: PropTypes.object,
 		masonryDimensions: PropTypes.object,
-		customImageComponent: PropTypes.object,
+		customImageComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.object
+		]),
 		customImageProps: PropTypes.object,
 		completeCustomComponent: PropTypes.func,
 		onPressImage: PropTypes.func,

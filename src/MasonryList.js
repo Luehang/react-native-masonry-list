@@ -30,7 +30,10 @@ export default class MasonryList extends React.PureComponent {
 		renderIndividualFooter: PropTypes.func,
 		masonryFlatListColProps: PropTypes.object,
 
-		customImageComponent: PropTypes.object,
+		customImageComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.object
+		]),
 		customImageProps: PropTypes.object,
 		completeCustomComponent: PropTypes.func,
 

@@ -16,7 +16,10 @@ export default class Column extends React.PureComponent {
 		imageContainerStyle: PropTypes.object,
 		spacing: PropTypes.number,
 
-		customImageComponent: PropTypes.object,
+		customImageComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.object
+		]),
 		customImageProps: PropTypes.object,
 		completeCustomComponent: PropTypes.func,
 
