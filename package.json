@@ -34,14 +34,15 @@
   },
   "main": "./src/index.js",
   "files": [
+    "/__test__",
     "/src",
     "LICENSE",
     "package.json",
     "README.md"
   ],
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "data.task": "^3.1.2"
+    "data.task": "^3.1.2",
+    "prop-types": "^15.6.2"
   },
   "peerDependencies": {
     "react": "*",
@@ -49,7 +50,12 @@
   },
   "devDependencies": {
     "react": "16.6.3",
-    "react-native": "0.57.7",
+    "react-native": "0.58.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-test-renderer": "16.6.3",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
     "eslint-plugin-flowtype": "^3.2.0",
@@ -58,8 +64,20 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-native": "^3.5.0"
   },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/",
+      "<rootDir>/__tests__/mocks/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/example/",
+      "<rootDir>/__tests__/mocks/"
+    ]
+  },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint src/"
+    "lint": "./node_modules/.bin/eslint src/",
+    "test": "jest"
   },
   "license": "MIT"
 }
