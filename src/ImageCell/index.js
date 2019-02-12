@@ -80,11 +80,16 @@ export default class ImageCell extends React.PureComponent {
 			renderIndividualFooter,
 			completeCustomComponent
 		} = this.props;
+		const masonryDimensions = {
+			width: data.masonryDimensions.width,
+			height: data.masonryDimensions.height,
+			margin: data.masonryDimensions.gutter / 2
+		};
 
 		const renderHeader = renderIndividualHeader &&
-			renderIndividualHeader(data);
+			renderIndividualHeader(data, data.index, masonryDimensions);
 		const renderFooter = renderIndividualFooter &&
-			renderIndividualFooter(data);
+			renderIndividualFooter(data, data.index, masonryDimensions);
 
 		return (
 			<View>
