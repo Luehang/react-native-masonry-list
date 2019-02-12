@@ -59,7 +59,7 @@ export default class MasonryList extends React.PureComponent {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps = async (nextProps) => {
 		if (nextProps.layoutDimensions.width && nextProps.layoutDimensions.height &&
 			nextProps.layoutDimensions.columnWidth && nextProps.layoutDimensions.gutterSize &&
 			nextProps.layoutDimensions.width !== this.props.layoutDimensions.width &&
@@ -86,10 +86,24 @@ export default class MasonryList extends React.PureComponent {
 	}
 
     _getCalculatedDimensions(imgDimensions = { width: 0, height: 0 }, columnWidth, gutterSize) {
+		const countDecimals = function (value) {
+			if (Math.floor(value) === value) {
+				return 0;
+			}
+			return value.toString().split(".")[1].length || 0; 
+		};
+
 		const divider = imgDimensions.width / columnWidth;
 
-		const newWidth = imgDimensions.width / divider;
-		const newHeight = imgDimensions.height / divider;
+		const tempWidth = imgDimensions.width / divider;
+		const tempHeight = imgDimensions.height / divider;
+
+		const newWidth = countDecimals(tempWidth) > 10
+			? parseFloat(tempWidth.toFixed(10))
+			: tempWidth;
+		const newHeight = countDecimals(tempHeight) > 10
+			? parseFloat(tempHeight.toFixed(10))
+			: tempHeight;
 
 		return { width: newWidth, height: newHeight, gutter: gutterSize };
 	}
@@ -102,6 +116,7 @@ export default class MasonryList extends React.PureComponent {
 		sorted
 	) {
 		let unsortedIndex = 0;
+		let renderIndex = 0;
 
 		let columnHeightTotals = [];
 		let columnCounting = 1;
@@ -190,12 +205,21 @@ export default class MasonryList extends React.PureComponent {
 
 								const finalizedData = setItemSource(resolvedData, itemSource, resolvedImage);
 
-								this.setState(state => {
-									const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
-									return {
+								if (renderIndex !== 0) {
+									this.setState(state => {
+										const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
+										renderIndex++;
+										return {
+											_sortedData: sortedData
+										};
+									});
+								} else {
+									const sortedData = insertIntoColumn(finalizedData, [], sorted);
+									renderIndex++;
+									this.setState({
 										_sortedData: sortedData
-									};
-								});
+									});
+								}
 							}
 						);
 					}
@@ -259,12 +283,21 @@ export default class MasonryList extends React.PureComponent {
 
 								resolvedImage.column = _assignColumns(resolvedImage, columns);
 
-								this.setState(state => {
-									const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
-									return {
+								if (renderIndex !== 0) {
+									this.setState(state => {
+										const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
+										renderIndex++;
+										return {
+											_sortedData: sortedData
+										};
+									});
+								} else {
+									const sortedData = insertIntoColumn(resolvedImage, [], sorted);
+									renderIndex++;
+									this.setState({
 										_sortedData: sortedData
-									};
-								});
+									});
+								}
 							}
 						);
 					}
@@ -301,7 +334,7 @@ export default class MasonryList extends React.PureComponent {
 						: this.props.columns
 				}
 				keyExtractor={(item, index) => {
-					return "COLUMN-" + index.toString() + "/" + (this.props.columns - 1);
+					return "COLUMN-" + index.toString() + "/"; // + (this.props.columns - 1);
 				}}
 				data={this.state._sortedData}
 				renderItem={({item, index}) => {

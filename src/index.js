@@ -88,32 +88,34 @@ export default class Masonry extends React.PureComponent {
         }
     }
 
-    _getColumnDimensions(parentDimensions, nColumns = 2, spacing = 1) {
+    _setColumnDimensions = (parentDimensions, nColumns = 2, spacing = 1) => {
 		const {
-			// height,
+			height,
 			width
 		} = parentDimensions;
 
 		const gutterBase = width / 100;
-		const gutterSize = gutterBase * spacing;
+        const gutterSize = gutterBase * spacing;
 
-		const columnWidth = (width / nColumns) - (gutterSize / 2);
+        const actualWidth = width - (((gutterSize / 2) * nColumns) + (gutterSize / 2));
 
-        return { columnWidth, gutterSize };
+        const columnWidth = actualWidth / nColumns;
+
+        this.setState({
+            layoutDimensions: {
+                width,
+                height,
+                columnWidth,
+                gutterSize
+            }
+        });
 	}
 
-    _setParentDimensions(event, nColumns = 2, spacing = 1) {
+    _setParentDimensions = (event, nColumns = 2, spacing = 1) => {
 		const { width, height } = event.nativeEvent.layout;
 
-		if (this._mounted) {
-            const columnDimensions = this._getColumnDimensions({ width, height }, nColumns, spacing);
-			this.setState({
-				layoutDimensions: {
-					width,
-                    height,
-                    ...columnDimensions
-				}
-			});
+		if (this._mounted && width && height) {
+            return this._setColumnDimensions({ width, height }, nColumns, spacing);
 		}
 	}
 
