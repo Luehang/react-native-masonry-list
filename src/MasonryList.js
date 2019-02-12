@@ -54,8 +54,6 @@ export default class MasonryList extends React.PureComponent {
 				this.props.images,
 				this.props.layoutDimensions,
 				this.props.columns,
-				this.props.initialColToRender,
-				this.props.initialNumInColsToRender,
 				this.props.sorted
 			);
 		}
@@ -72,10 +70,16 @@ export default class MasonryList extends React.PureComponent {
 					nextProps.images,
 					nextProps.layoutDimensions,
 					nextProps.columns,
-					nextProps.initialColToRender,
-					nextProps.initialNumInColsToRender,
 					nextProps.sorted
 				);
+		} else if (nextProps.orientation !== this.props.orientation) {
+			this.resolveImages(
+				nextProps.itemSource,
+				this.state._sortedData,
+				nextProps.layoutDimensions,
+				nextProps.columns,
+				nextProps.sorted
+			);
 		}
 	}
 
@@ -93,14 +97,9 @@ export default class MasonryList extends React.PureComponent {
 		images,
 		layoutDimensions,
 		columns,
-		initialColToRender,
-		initialNumInColsToRender,
 		sorted
 	) {
-		const firstRenderNum = initialColToRender * initialNumInColsToRender;
 		let unsortedIndex = 0;
-		let renderIndex = 0;
-		let batchOne = [];
 
 		let columnHeightTotals = [];
 		let columnCounting = 1;
@@ -189,26 +188,12 @@ export default class MasonryList extends React.PureComponent {
 
 								const finalizedData = setItemSource(resolvedData, itemSource, resolvedImage);
 
-								if (firstRenderNum - 1 > renderIndex) {
-									const sortedData = insertIntoColumn(finalizedData, batchOne, sorted);
-									batchOne = sortedData;
-									renderIndex++;
-								}
-								else if (firstRenderNum - 1 === renderIndex) {
-									const sortedData = insertIntoColumn(finalizedData, batchOne, sorted);
-									batchOne = sortedData;
-									this.setState({_sortedData: batchOne});
-									renderIndex++;
-								}
-								else if (firstRenderNum - 1 <= renderIndex) {
-									this.setState(state => {
-										const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
-										return {
-											_sortedData: sortedData
-										};
-									});
-									renderIndex++;
-								}
+								this.setState(state => {
+									const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
+									return {
+										_sortedData: sortedData
+									};
+								});
 							}
 						);
 					}
@@ -272,26 +257,12 @@ export default class MasonryList extends React.PureComponent {
 
 								resolvedImage.column = _assignColumns(resolvedImage, columns);
 
-								if (firstRenderNum - 1 > renderIndex) {
-									const sortedData = insertIntoColumn(resolvedImage, batchOne, sorted);
-									batchOne = sortedData;
-									renderIndex++;
-								}
-								else if (firstRenderNum - 1 === renderIndex) {
-									const sortedData = insertIntoColumn(resolvedImage, batchOne, sorted);
-									batchOne = sortedData;
-									this.setState({_sortedData: batchOne});
-									renderIndex++;
-								}
-								else if (firstRenderNum - 1 <= renderIndex) {
-									this.setState(state => {
-										const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
-										return {
-											_sortedData: sortedData
-										};
-									});
-									renderIndex++;
-								}
+								this.setState(state => {
+									const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
+									return {
+										_sortedData: sortedData
+									};
+								});
 							}
 						);
 					}

@@ -52,6 +52,7 @@ export default class Masonry extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            orientation: "portrait",
 			layoutDimensions: this.props.containerWidth ?
 				{
                     width: this.props.containerWidth,
@@ -72,8 +73,19 @@ export default class Masonry extends React.PureComponent {
         this._mounted = true;
     }
 
-    componentWillUnmount() {
-        this._mounted = false;
+    _layoutChange = (ev) => {
+        const { width, height } = ev.nativeEvent.layout;
+        const { orientation } = this.state;
+        const { columns, spacing } = this.props;
+        let maxComp = Math.max(width, height);
+
+        if (width >= maxComp && orientation !== "landscape") {
+            this.setState({ orientation: "landscape" });
+            this._setParentDimensions(ev, columns, spacing);
+        } else if (orientation !== "portrait") {
+            this.setState({ orientation: "portrait" });
+            this._setParentDimensions(ev, columns, spacing);
+        }
     }
 
     _getColumnDimensions(parentDimensions, nColumns = 2, spacing = 1) {
@@ -105,18 +117,24 @@ export default class Masonry extends React.PureComponent {
 		}
 	}
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
     render() {
         return (
             <View style={{flex: 1}}
                 onLayout={(event) => {
                     if (!this.props.containerWidth) {
                         this._setParentDimensions(event, this.props.columns, this.props.spacing);
+                        this._layoutChange(event);
                     }
                 }}>
                 <MasonryList
                     layoutDimensions={this.state.layoutDimensions}
                     containerWidth={this.props.containerWidth}
                     itemSource={this.props.itemSource}
+                    orientation={this.state.orientation}
 
                     images={this.props.images}
                     columns={this.props.columns}

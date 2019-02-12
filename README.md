@@ -17,6 +17,8 @@
 
 ![react-native-masonry-list](https://www.luehangs.site/videos/react-native-masonry-list-demo.gif)
 
+![react-native-masonry-list landscape](https://www.luehangs.site/videos/react-native-masonry-list-landscape.gif)
+
 #### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
 
 <br/>

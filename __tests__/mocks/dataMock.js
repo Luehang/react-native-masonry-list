@@ -1,11 +1,5 @@
 export const data = [
     {
-        source: require("./../../example/assets/adult-art-artistic-235462.jpg"),
-        dimensions: { width: 1080, height: 1920 },
-        id: idGenerator(),
-        title: "www.luehangs.site",
-    },
-    {
         uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg",
         width: 1080,
         height: 1920,
