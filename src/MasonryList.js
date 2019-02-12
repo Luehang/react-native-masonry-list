@@ -89,7 +89,7 @@ export default class MasonryList extends React.PureComponent {
 			if (Math.floor(value) === value) {
 				return 0;
 			}
-			return value.toString().split(".")[1].length || 0; 
+			return value.toString().split(".")[1].length || 0;
 		};
 
 		const divider = imgDimensions.width / columnWidth;
