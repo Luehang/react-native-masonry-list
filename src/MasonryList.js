@@ -72,10 +72,12 @@ export default class MasonryList extends React.PureComponent {
 					nextProps.columns,
 					nextProps.sorted
 				);
-		} else if (nextProps.orientation !== this.props.orientation) {
+		}
+		if (nextProps.orientation !== this.props.orientation) {
+			this.setState({ _sortedData: [] });
 			this.resolveImages(
 				nextProps.itemSource,
-				this.state._sortedData,
+				nextProps.images,
 				nextProps.layoutDimensions,
 				nextProps.columns,
 				nextProps.sorted
