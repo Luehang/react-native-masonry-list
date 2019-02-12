@@ -104,7 +104,7 @@ export default class MasonryList extends React.PureComponent {
 			? parseFloat(tempHeight.toFixed(10))
 			: tempHeight;
 
-		return { width: newWidth, height: newHeight, gutter: gutterSize };
+		return { width: newWidth, height: newHeight, gutter: gutterSize, margin: gutterSize / 2 };
 	}
 
 	resolveImages(
