@@ -155,7 +155,11 @@ export default class Masonry extends React.PureComponent {
 
     render() {
         return (
-            <View style={{flex: 1}}
+            <View style={
+                    !this.props.containerWidth
+                        ? {flex: 1}
+                        : {flex: 1, width: this.props.containerWidth}
+                }
                 onLayout={(event) => {
                     if (!this.props.containerWidth) {
                         this._setParentDimensions(event, this.props.columns, this.props.spacing);
