@@ -59,7 +59,7 @@ export default class MasonryList extends React.PureComponent {
 		}
 	}
 
-	componentWillReceiveProps = async (nextProps) => {
+	componentWillReceiveProps = (nextProps) => {
 		if (nextProps.layoutDimensions.width && nextProps.layoutDimensions.height &&
 			nextProps.layoutDimensions.columnWidth && nextProps.layoutDimensions.gutterSize &&
 			nextProps.layoutDimensions.width !== this.props.layoutDimensions.width &&
@@ -73,18 +73,23 @@ export default class MasonryList extends React.PureComponent {
 					nextProps.sorted
 				);
 		}
-		else if (nextProps.orientation !== this.props.orientation) {
-			this.resolveImages(
-				nextProps.itemSource,
-				nextProps.images,
-				nextProps.layoutDimensions,
-				nextProps.columns,
-				nextProps.sorted
-			);
+		else if (nextProps.orientation !== this.props.orientation ||
+			nextProps.images !== this.props.images ||
+			nextProps.columns !== this.props.columns ||
+			nextProps.spacing !== this.props.spacing ||
+			nextProps.sorted !== this.props.sorted ||
+			nextProps.containerWidth !== this.props.containerWidth) {
+				this.resolveImages(
+					nextProps.itemSource,
+					nextProps.images,
+					nextProps.layoutDimensions,
+					nextProps.columns,
+					nextProps.sorted
+				);
 		}
 	}
 
-    _getCalculatedDimensions(imgDimensions = { width: 0, height: 0 }, columnWidth, gutterSize) {
+    _getCalculatedDimensions(imgDimensions = { width: 0, height: 0 }, columnWidth = 0, gutterSize = 0) {
 		const countDecimals = function (value) {
 			if (Math.floor(value) === value) {
 				return 0;
@@ -108,11 +113,11 @@ export default class MasonryList extends React.PureComponent {
 	}
 
 	resolveImages(
-		itemSource,
-		images,
-		layoutDimensions,
-		columns,
-		sorted
+		itemSource = this.props.itemSource,
+		images = this.props.images,
+		layoutDimensions = this.props.layoutDimensions,
+		columns = this.props.columns,
+		sorted = this.props.sorted
 	) {
 		let unsortedIndex = 0;
 		let renderIndex = 0;
@@ -141,7 +146,7 @@ export default class MasonryList extends React.PureComponent {
 			return columnIndex;
 		}
 
-		if (itemSource.length > 0) {
+		if (images && itemSource.length > 0) {
 			images
 				.map((item) => {
 					const image = getItemSource(item, itemSource);
@@ -223,7 +228,7 @@ export default class MasonryList extends React.PureComponent {
 						);
 					}
 				});
-		} else {
+		} else if (images) {
 			images
 				.map((image) => {
 					const source = getImageSource(image);
@@ -283,7 +288,7 @@ export default class MasonryList extends React.PureComponent {
 								resolvedImage.column = _assignColumns(resolvedImage, columns);
 
 								if (renderIndex !== 0) {
-									this.setState(state => {
+									this.setState((state) => {
 										const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
 										renderIndex++;
 										return {

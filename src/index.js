@@ -6,10 +6,11 @@ import MasonryList from "./MasonryList";
 
 export default class Masonry extends React.PureComponent {
     _mounted = false;
+    // masonryListRef;
 
     static propTypes = {
         itemSource: PropTypes.array,
-		images: PropTypes.array.isRequired,
+		images: PropTypes.array,
         containerWidth: PropTypes.number,
 
 		columns: PropTypes.number,
@@ -65,13 +66,42 @@ export default class Masonry extends React.PureComponent {
 					// Bug fix for displaying layout
 					// dimensions in scrolling views
 					width: 100,
-				}
+                }
         };
     }
 
     componentWillMount() {
         this._mounted = true;
     }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (!nextProps.containerWidth && !this.props.containerWidth) {
+            if (nextProps.columns !== this.props.columns ||
+                nextProps.spacing !== this.props.spacing) {
+                    this._setColumnDimensions(
+                        {
+                            height: this.state.layoutDimensions.height,
+                            width: this.state.layoutDimensions.width
+                        },
+                        nextProps.columns,
+                        nextProps.spacing
+                    );
+            }
+        } else if (nextProps.containerWidth || this.props.containerWidth) {
+            if (nextProps.containerWidth !== this.props.containerWidth ||
+                nextProps.columns !== this.props.columns ||
+                nextProps.spacing !== this.props.spacing) {
+                    this.setState({
+                        layoutDimensions: {
+                            width: nextProps.containerWidth,
+                            gutterSize: (nextProps.containerWidth / 100) * nextProps.spacing,
+                            columnWidth: (nextProps.containerWidth / nextProps.columns) -
+                                (((nextProps.containerWidth / 100) * nextProps.spacing) / 2)
+                        }
+                    });
+            }
+        }
+	}
 
     _layoutChange = (ev) => {
         const { width, height } = ev.nativeEvent.layout;
@@ -117,7 +147,7 @@ export default class Masonry extends React.PureComponent {
 		if (this._mounted && width && height) {
             return this._setColumnDimensions({ width, height }, nColumns, spacing);
 		}
-	}
+    }
 
     componentWillUnmount() {
         this._mounted = false;
@@ -137,6 +167,11 @@ export default class Masonry extends React.PureComponent {
                     containerWidth={this.props.containerWidth}
                     itemSource={this.props.itemSource}
                     orientation={this.state.orientation}
+                    // ref={(component) => {
+                    //     this.masonryListRef = component;
+                    //     this.props.masonryListRef &&
+                    //         this.props.masonryListRef(component);
+                    // }}
 
                     images={this.props.images}
                     columns={this.props.columns}
