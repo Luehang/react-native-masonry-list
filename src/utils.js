@@ -56,7 +56,8 @@ export function getImageSource(image) {
         ? { uri: image.uri } : image.URI
         ? { uri: image.URI } : image.url
         ? { uri: image.url } : image.URL
-        ? { uri: image.URL } : undefined;
+        ? { uri: image.URL } : image.src
+        ? { uri: image.src } : undefined;
 }
 
 export function getImageUri(image) {
@@ -65,7 +66,8 @@ export function getImageUri(image) {
         ? image.uri : image.URI
         ? image.URI : image.url
         ? image.url : image.URL
-        ? image.URL : undefined;
+        ? image.URL : image.src
+        ? image.src : undefined;
 }
 
 export function insertIntoColumn (resolvedImage, dataSet, sorted) {
