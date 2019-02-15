@@ -44,7 +44,8 @@ export default class MasonryList extends React.PureComponent {
 	};
 
 	state = {
-		_sortedData: []
+		_sortedData: [],
+		_resolvedData: [],
 	}
 
 	componentWillMount() {
@@ -81,7 +82,7 @@ export default class MasonryList extends React.PureComponent {
 			nextProps.containerWidth !== this.props.containerWidth) {
 				this.resolveImages(
 					nextProps.itemSource,
-					nextProps.images,
+					this.state._resolvedData,
 					nextProps.layoutDimensions,
 					nextProps.columns,
 					nextProps.sorted
@@ -214,14 +215,16 @@ export default class MasonryList extends React.PureComponent {
 										const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
 										renderIndex++;
 										return {
-											_sortedData: sortedData
+											_sortedData: sortedData,
+											_resolvedData: state._resolvedData.concat(finalizedData)
 										};
 									});
 								} else {
 									const sortedData = insertIntoColumn(finalizedData, [], sorted);
 									renderIndex++;
 									this.setState({
-										_sortedData: sortedData
+										_sortedData: sortedData,
+										_resolvedData: [finalizedData]
 									});
 								}
 							}
@@ -292,14 +295,16 @@ export default class MasonryList extends React.PureComponent {
 										const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
 										renderIndex++;
 										return {
-											_sortedData: sortedData
+											_sortedData: sortedData,
+											_resolvedData: state._resolvedData.concat(resolvedImage)
 										};
 									});
 								} else {
 									const sortedData = insertIntoColumn(resolvedImage, [], sorted);
 									renderIndex++;
 									this.setState({
-										_sortedData: sortedData
+										_sortedData: sortedData,
+										_resolvedData: [resolvedImage]
 									});
 								}
 							}
