@@ -75,7 +75,6 @@ export default class MasonryList extends React.PureComponent {
 				);
 		}
 		else if (nextProps.orientation !== this.props.orientation ||
-			nextProps.images !== this.props.images ||
 			nextProps.columns !== this.props.columns ||
 			nextProps.spacing !== this.props.spacing ||
 			nextProps.sorted !== this.props.sorted ||
@@ -87,6 +86,15 @@ export default class MasonryList extends React.PureComponent {
 					nextProps.columns,
 					nextProps.sorted
 				);
+		}
+		else if (nextProps.images !== this.props.images) {
+			this.resolveImages(
+				nextProps.itemSource,
+				nextProps.images,
+				nextProps.layoutDimensions,
+				nextProps.columns,
+				nextProps.sorted
+			);
 		}
 	}
 
