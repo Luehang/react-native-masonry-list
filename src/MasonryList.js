@@ -13,6 +13,8 @@ import {
 import Column from "./Column";
 
 export default class MasonryList extends React.PureComponent {
+	_calculatedData = [];
+
 	static propTypes = {
         itemSource: PropTypes.array,
 		images: PropTypes.array.isRequired,
@@ -44,8 +46,7 @@ export default class MasonryList extends React.PureComponent {
 	};
 
 	state = {
-		_sortedData: [],
-		_resolvedData: [],
+		_sortedData: []
 	}
 
 	componentWillMount() {
@@ -81,7 +82,7 @@ export default class MasonryList extends React.PureComponent {
 			nextProps.containerWidth !== this.props.containerWidth) {
 				this.resolveImages(
 					nextProps.itemSource,
-					this.state._resolvedData,
+					this._calculatedData,
 					nextProps.layoutDimensions,
 					nextProps.columns,
 					nextProps.sorted
@@ -221,18 +222,18 @@ export default class MasonryList extends React.PureComponent {
 								if (renderIndex !== 0) {
 									this.setState(state => {
 										const sortedData = insertIntoColumn(finalizedData, state._sortedData, sorted);
+										this._calculatedData = this._calculatedData.concat(finalizedData);
 										renderIndex++;
 										return {
-											_sortedData: sortedData,
-											_resolvedData: state._resolvedData.concat(finalizedData)
+											_sortedData: sortedData
 										};
 									});
 								} else {
 									const sortedData = insertIntoColumn(finalizedData, [], sorted);
+									this._calculatedData = [finalizedData];
 									renderIndex++;
 									this.setState({
-										_sortedData: sortedData,
-										_resolvedData: [finalizedData]
+										_sortedData: sortedData
 									});
 								}
 							}
@@ -301,18 +302,18 @@ export default class MasonryList extends React.PureComponent {
 								if (renderIndex !== 0) {
 									this.setState((state) => {
 										const sortedData = insertIntoColumn(resolvedImage, state._sortedData, sorted);
+										this._calculatedData = this._calculatedData.concat(resolvedImage);
 										renderIndex++;
 										return {
-											_sortedData: sortedData,
-											_resolvedData: state._resolvedData.concat(resolvedImage)
+											_sortedData: sortedData
 										};
 									});
 								} else {
 									const sortedData = insertIntoColumn(resolvedImage, [], sorted);
+									this._calculatedData = [resolvedImage];
 									renderIndex++;
 									this.setState({
-										_sortedData: sortedData,
-										_resolvedData: [resolvedImage]
+										_sortedData: sortedData
 									});
 								}
 							}
