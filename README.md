@@ -147,20 +147,20 @@ render() {
 | `initialColToRender`          | How many columns to render in the initial batch. | `number` | `columns` |
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
-| `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
+| `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `boolean` | false |
 | `backgroundColor`             | Set the color of the background. **Version \*1.3.0 update**. | `string` | "#fff"
-| `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
+| `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
 | `containerWidth`              | The width of the masonry list layout. Adding this will improve performance. **Version \*2.0.0 update** | `number` |
 | `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `React.Component` | `Image` module import of react-native |
-| `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `Object` | |
-| `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `({ source: Object, style: { width: number, height: number, margin: number }, data: Object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
+| `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `object` | |
+| `completeCustomComponent`     | Custom function to return a fully custom component for each image.  `({ source: object, style: { width: number, height: number, margin: number }, data: object }) => React.Element`  This function must return a React Component and it is required to have the source and style for the component to display proper masonry. | `Function` | |
 | `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual masonry image. `(item: { column: number, index: number, dimensions: { width: number, height: number }, masonryDimensions: { width: number, height: number, margin: number, gutter: number }, source: object, ...data }) => ?React.Element` | `Function` | |
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual masonry image. `(item: { column: number, index: number, dimensions: { width: number, height: number }, masonryDimensions: { width: number, height: number, margin: number, gutter: number }, source: object, ...data }) => ?React.Element` | `Function` | |
-| `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: Object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
-| `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: Object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
+| `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
+| `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
 | `onImageResolved`             | A function called after fetching image and resolving it.  `(image: object, renderIndex: number) => ?object` **Version \*2.8.0 update**. | `Function` | |
-| `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `array` | [] |
+| `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `Array` | [] |
 
 <br/>
 <br/>
