@@ -58,8 +58,7 @@ export default class Masonry extends React.PureComponent {
 				{
                     width: this.props.containerWidth,
 					gutterSize: (this.props.containerWidth / 100) * this.props.spacing,
-                    columnWidth: (this.props.containerWidth / this.props.columns) -
-                        (((this.props.containerWidth / 100) * this.props.spacing) / 2)
+                    columnWidth: this.props.containerWidth / this.props.columns
                 }
 			:
 				{
@@ -95,8 +94,7 @@ export default class Masonry extends React.PureComponent {
                         layoutDimensions: {
                             width: nextProps.containerWidth,
                             gutterSize: (nextProps.containerWidth / 100) * nextProps.spacing,
-                            columnWidth: (nextProps.containerWidth / nextProps.columns) -
-                                (((nextProps.containerWidth / 100) * nextProps.spacing) / 2)
+                            columnWidth: nextProps.containerWidth / nextProps.columns
                         }
                     });
             }
@@ -127,9 +125,10 @@ export default class Masonry extends React.PureComponent {
 		const gutterBase = width / 100;
         const gutterSize = gutterBase * spacing;
 
-        const actualWidth = width - (((gutterSize / 2) * nColumns) + (gutterSize / 2));
+        // const actualWidth = width - (((gutterSize / 2) * nColumns) + (gutterSize / 2));
+        const actualWidth = width;
 
-        const columnWidth = actualWidth / nColumns;
+        const columnWidth = Math.floor(actualWidth / nColumns);
 
         this.setState({
             layoutDimensions: {

@@ -111,7 +111,7 @@ render() {
                     // the actual width and height for REMOTE IMAGES
                     // will help improve performance.
                     dimensions: { width: 1080, height: 1920 } },
-                { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"
+                { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg",
                     // Optional: Does not require an id for each
                     // image object, but is for best practices.
                     id: "blpccx4cn" },

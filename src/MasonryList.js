@@ -109,8 +109,8 @@ export default class MasonryList extends React.PureComponent {
 
 		const divider = imgDimensions.width / columnWidth;
 
-		const tempWidth = imgDimensions.width / divider;
-		const tempHeight = imgDimensions.height / divider;
+		const tempWidth = (imgDimensions.width / divider) - (gutterSize * 1.5);
+		const tempHeight = (imgDimensions.height / divider) - (gutterSize * 1.5);
 
 		const newWidth = countDecimals(tempWidth) > 10
 			? parseFloat(tempWidth.toFixed(10))

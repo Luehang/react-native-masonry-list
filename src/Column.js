@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import PropTypes from "prop-types";
 
 import { getItemSource } from "./utils";
@@ -83,24 +83,20 @@ export default class Column extends React.PureComponent {
 
 	render() {
 		return (
-			<View
-				style={{
+			<FlatList
+				style={{flex: 1}}
+				contentContainerStyle={{
 					width: this.props.layoutDimensions.columnWidth,
 					overflow: "hidden",
-					flex: 1,
 					backgroundColor: this.props.backgroundColor,
-					flexDirection: "column"
-				}}>
-				<FlatList
-					style={{flex: 1}}
-					key={this.props.columnKey}
-					data={this.props.data}
-					keyExtractor={this._keyExtractor}
-					initialNumToRender={this.props.initialNumInColsToRender}
-					removeClippedSubviews={true}
-					renderItem={this._renderItem}
-				/>
-			</View>
+				}}
+				key={this.props.columnKey}
+				data={this.props.data}
+				keyExtractor={this._keyExtractor}
+				initialNumToRender={this.props.initialNumInColsToRender}
+				removeClippedSubviews={true}
+				renderItem={this._renderItem}
+			/>
 		);
 	}
 }
