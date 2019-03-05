@@ -29,7 +29,9 @@ export default class Masonry extends React.PureComponent {
 			PropTypes.object
 		]),
 		customImageProps: PropTypes.object,
-		completeCustomComponent: PropTypes.func,
+        completeCustomComponent: PropTypes.func,
+
+        onImageResolved: PropTypes.func,
 
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
@@ -191,6 +193,8 @@ export default class Masonry extends React.PureComponent {
                     customImageComponent={this.props.customImageComponent}
                     customImageProps={this.props.customImageProps}
                     completeCustomComponent={this.props.completeCustomComponent}
+
+                    onImageResolved={this.props.onImageResolved}
 
                     onPressImage={this.props.onPressImage}
                     onLongPressImage={this.props.onLongPressImage}

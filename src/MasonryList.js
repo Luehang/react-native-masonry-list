@@ -39,6 +39,8 @@ export default class MasonryList extends React.PureComponent {
 		customImageProps: PropTypes.object,
 		completeCustomComponent: PropTypes.func,
 
+		onImageResolved: PropTypes.func,
+
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 
@@ -217,7 +219,11 @@ export default class MasonryList extends React.PureComponent {
 
 								resolvedData.column = _assignColumns(resolvedImage, columns);
 
-								const finalizedData = setItemSource(resolvedData, itemSource, resolvedImage);
+								let finalizedData = setItemSource(resolvedData, itemSource, resolvedImage);
+
+								if (this.props.onImageResolved) {
+									finalizedData = this.props.onImageResolved(finalizedData, renderIndex) || finalizedData;
+								}
 
 								if (renderIndex !== 0) {
 									this.setState(state => {
@@ -298,6 +304,10 @@ export default class MasonryList extends React.PureComponent {
 									);
 
 								resolvedImage.column = _assignColumns(resolvedImage, columns);
+
+								if (this.props.onImageResolved) {
+									resolvedImage = this.props.onImageResolved(resolvedImage, renderIndex) || resolvedImage;
+								}
 
 								if (renderIndex !== 0) {
 									this.setState((state) => {
