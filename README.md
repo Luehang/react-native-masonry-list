@@ -158,7 +158,7 @@ render() {
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual masonry image. `(item: { column: number, index: number, dimensions: { width: number, height: number }, masonryDimensions: { width: number, height: number, margin: number, gutter: number }, source: object, ...data }) => ?React.Element` | `Function` | |
 | `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
 | `onLongPressImage`            | Custom function that is executed after a long press on the image. `(item: object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
-| `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
+| `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `object` | {} |
 | `onImageResolved`             | A function called after fetching image and resolving it.  `(image: object, renderIndex: number) => ?object` **Version \*2.8.0 update**. | `Function` | |
 | `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `Array` | [] |
 
