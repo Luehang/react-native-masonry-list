@@ -1,3 +1,5 @@
+import React from "react";
+
 export function getItemSource(item, itemSource) {
     switch (itemSource.length) {
         case 0:
@@ -84,4 +86,29 @@ export function insertIntoColumn (resolvedImage, dataSet, sorted) {
 	}
 
 	return dataCopy;
+}
+
+export function isClassComponent(component) {
+    return (
+        typeof component === "function" &&
+        !!component.prototype.isReactComponent
+    ) ? true : false;
+}
+
+export function isFunctionComponent(component) {
+    return (
+        typeof component === "function" &&
+        String(component).includes("return React.createElement")
+    ) ? true : false;
+}
+
+export function isReactComponent(component) {
+    return (
+        isClassComponent(component) ||
+        isFunctionComponent(component)
+    ) ? true : false;
+}
+
+export function isElement(element) {
+    return React.isValidElement(element);
 }

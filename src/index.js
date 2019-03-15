@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 
 import MasonryList from "./MasonryList";
 
-export default class Masonry extends React.PureComponent {
+import {
+    isReactComponent,
+    isElement
+} from "./utils";
+
+class Masonry extends React.PureComponent {
     _mounted = false;
     // masonryListRef;
 
@@ -162,10 +167,13 @@ export default class Masonry extends React.PureComponent {
             Array.isArray(this.props.images) &&
             this.props.images.length === 0
         ) {
-            if (typeof this.props.emptyView === "function") {
+            if (isReactComponent(this.props.emptyView)) {
+                return React.createElement(this.props.emptyView);
+            }
+            else if (typeof this.props.emptyView === "function") {
                 return this.props.emptyView();
             }
-            if (typeof this.props.emptyView === "object") {
+            else if (isElement(this.props.emptyView)) {
                 return this.props.emptyView;
             }
         }
@@ -220,3 +228,5 @@ export default class Masonry extends React.PureComponent {
         );
     }
 }
+
+export default Masonry;
