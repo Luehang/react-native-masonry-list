@@ -26,13 +26,13 @@ class Masonry extends React.PureComponent {
         backgroundColor: PropTypes.string,
         imageContainerStyle: PropTypes.object,
         renderIndividualHeader: PropTypes.oneOfType([
-			PropTypes.func,
-			PropTypes.node
-		]),
+            PropTypes.func,
+            PropTypes.node
+        ]),
         renderIndividualFooter: PropTypes.oneOfType([
-			PropTypes.func,
-			PropTypes.node
-		]),
+            PropTypes.func,
+            PropTypes.node
+        ]),
         masonryFlatListColProps: PropTypes.object,
 
         customImageComponent: PropTypes.oneOfType([
@@ -41,9 +41,9 @@ class Masonry extends React.PureComponent {
         ]),
         customImageProps: PropTypes.object,
         completeCustomComponent: PropTypes.oneOfType([
-			PropTypes.func,
-			PropTypes.node
-		]),
+            PropTypes.func,
+            PropTypes.node
+        ]),
 
         onImageResolved: PropTypes.func,
 
