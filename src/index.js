@@ -10,63 +10,66 @@ export default class Masonry extends React.PureComponent {
 
     static propTypes = {
         itemSource: PropTypes.array,
-		images: PropTypes.array,
+        images: PropTypes.array,
         containerWidth: PropTypes.number,
 
-		columns: PropTypes.number,
-		spacing: PropTypes.number,
-		initialColToRender: PropTypes.number,
-		initialNumInColsToRender: PropTypes.number,
-		sorted: PropTypes.bool,
-		backgroundColor: PropTypes.string,
-		imageContainerStyle: PropTypes.object,
-		renderIndividualHeader: PropTypes.func,
-		renderIndividualFooter: PropTypes.func,
-		masonryFlatListColProps: PropTypes.object,
+        columns: PropTypes.number,
+        spacing: PropTypes.number,
+        initialColToRender: PropTypes.number,
+        initialNumInColsToRender: PropTypes.number,
+        sorted: PropTypes.bool,
+        backgroundColor: PropTypes.string,
+        imageContainerStyle: PropTypes.object,
+        renderIndividualHeader: PropTypes.func,
+        renderIndividualFooter: PropTypes.func,
+        masonryFlatListColProps: PropTypes.object,
 
-		customImageComponent: PropTypes.oneOfType([
-			PropTypes.func,
-			PropTypes.object
-		]),
-		customImageProps: PropTypes.object,
+        customImageComponent: PropTypes.oneOfType([
+            PropTypes.func,
+            PropTypes.object
+        ]),
+        customImageProps: PropTypes.object,
         completeCustomComponent: PropTypes.func,
 
         onImageResolved: PropTypes.func,
 
-		onPressImage: PropTypes.func,
-		onLongPressImage: PropTypes.func,
+        onPressImage: PropTypes.func,
+        onLongPressImage: PropTypes.func,
 
-		onEndReachedThreshold: PropTypes.number,
-    };
+        emptyView: PropTypes.oneOfType([
+            PropTypes.func,
+            PropTypes.node
+        ]),
+        onEndReachedThreshold: PropTypes.number,
+    }
 
     static defaultProps = {
         itemSource: [],
-		images: [],
-		columns: 2,
-		initialColToRender: null,
-		initialNumInColsToRender: 1,
-		spacing: 1,
-		sorted: false,
-		backgroundColor: "#fff",
-		imageContainerStyle: {},
-		onEndReachedThreshold: 25
-	};
+        images: [],
+        columns: 2,
+        initialColToRender: null,
+        initialNumInColsToRender: 1,
+        spacing: 1,
+        sorted: false,
+        backgroundColor: "#fff",
+        imageContainerStyle: {},
+        onEndReachedThreshold: 25
+    }
 
     constructor(props) {
         super(props);
         this.state = {
             orientation: "portrait",
-			layoutDimensions: this.props.containerWidth ?
-				{
+            layoutDimensions: this.props.containerWidth
+                ? {
                     width: this.props.containerWidth,
-					gutterSize: (this.props.containerWidth / 100) * this.props.spacing,
+                    gutterSize: (this.props.containerWidth / 100) * this.props.spacing,
                     columnWidth: this.props.containerWidth / this.props.columns
                 }
-			:
-				{
-					// Bug fix for displaying layout
-					// dimensions in scrolling views
-					width: 100,
+                : {
+                    // Bug fix for displaying layout
+                    // dimensions in scrolling views
+                    width: 100,
                 }
         };
     }
@@ -119,15 +122,14 @@ export default class Masonry extends React.PureComponent {
     }
 
     _setColumnDimensions = (parentDimensions, nColumns = 2, spacing = 1) => {
-		const {
-			height,
-			width
-		} = parentDimensions;
+        const {
+            height,
+            width
+        } = parentDimensions;
 
-		const gutterBase = width / 100;
+        const gutterBase = width / 100;
         const gutterSize = gutterBase * spacing;
 
-        // const actualWidth = width - (((gutterSize / 2) * nColumns) + (gutterSize / 2));
         const actualWidth = width;
 
         const columnWidth = Math.floor(actualWidth / nColumns);
@@ -140,14 +142,14 @@ export default class Masonry extends React.PureComponent {
                 gutterSize
             }
         });
-	}
+    }
 
     _setParentDimensions = (event, nColumns = 2, spacing = 1) => {
-		const { width, height } = event.nativeEvent.layout;
+        const { width, height } = event.nativeEvent.layout;
 
-		if (this._mounted && width && height) {
+        if (this._mounted && width && height) {
             return this._setColumnDimensions({ width, height }, nColumns, spacing);
-		}
+        }
     }
 
     componentWillUnmount() {
@@ -155,6 +157,19 @@ export default class Masonry extends React.PureComponent {
     }
 
     render() {
+        if (
+            this.props.emptyView &&
+            Array.isArray(this.props.images) &&
+            this.props.images.length === 0
+        ) {
+            if (typeof this.props.emptyView === "function") {
+                return this.props.emptyView();
+            }
+            if (typeof this.props.emptyView === "object") {
+                return this.props.emptyView;
+            }
+        }
+
         return (
             <View style={
                     !this.props.containerWidth

@@ -7,7 +7,7 @@ import ImageCell from "./ImageCell";
 
 export default class Column extends React.PureComponent {
 	static propTypes = {
-        itemSource: PropTypes.array,
+		itemSource: PropTypes.array,
 		data: PropTypes.array,
 		initialNumInColsToRender: PropTypes.number,
 		layoutDimensions: PropTypes.object.isRequired,
