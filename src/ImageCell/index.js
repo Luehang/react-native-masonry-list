@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import ImageComponent from "./ImageComponent";
 import TouchableImageComponent from "./TouchableImageComponent";
 import CustomImageUnit from "./CustomImageUnit";
+import {
+    isReactComponent,
+    isElement
+} from "./../utils";
 
 export default class ImageCell extends React.PureComponent {
 	static propTypes = {
@@ -16,11 +20,20 @@ export default class ImageCell extends React.PureComponent {
 			PropTypes.object
 		]),
 		customImageProps: PropTypes.object,
-		completeCustomComponent: PropTypes.func,
+		completeCustomComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
-		renderIndividualHeader: PropTypes.func,
-		renderIndividualFooter: PropTypes.func
+		renderIndividualHeader: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
+		renderIndividualFooter: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
 	}
 
 	_renderImage = () => {
@@ -81,10 +94,38 @@ export default class ImageCell extends React.PureComponent {
 			completeCustomComponent
 		} = this.props;
 
-		const renderHeader = renderIndividualHeader &&
-			renderIndividualHeader(data, data.index);
-		const renderFooter = renderIndividualFooter &&
-			renderIndividualFooter(data, data.index);
+		let renderHeader = null;
+		let renderFooter = null;
+
+		if (renderIndividualHeader) {
+			if (isReactComponent(renderIndividualHeader)) {
+				renderHeader = React.createElement(renderIndividualHeader, {
+					data: data,
+					index: data.index
+				});
+			}
+			else if (typeof renderIndividualHeader === "function") {
+				renderHeader = renderIndividualHeader(data, data.index);
+			}
+			else if (isElement(renderIndividualHeader)) {
+				renderHeader = renderIndividualHeader;
+			}
+		}
+
+		if (renderIndividualFooter) {
+			if (isReactComponent(renderIndividualFooter)) {
+				renderFooter = React.createElement(renderIndividualFooter, {
+					data: data,
+					index: data.index
+				});
+			}
+			else if (typeof renderIndividualFooter === "function") {
+				renderFooter = renderIndividualFooter();
+			}
+			else if (isElement(renderIndividualFooter)) {
+				renderFooter = renderIndividualFooter;
+			}
+		}
 
 		return (
 			<View>

@@ -28,16 +28,25 @@ export default class MasonryList extends React.PureComponent {
 		sorted: PropTypes.bool,
 		backgroundColor: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
-		renderIndividualHeader: PropTypes.func,
-		renderIndividualFooter: PropTypes.func,
+		renderIndividualHeader: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
+		renderIndividualFooter: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
 		masonryFlatListColProps: PropTypes.object,
 
 		customImageComponent: PropTypes.oneOfType([
 			PropTypes.func,
-			PropTypes.object
+			PropTypes.node
 		]),
 		customImageProps: PropTypes.object,
-		completeCustomComponent: PropTypes.func,
+		completeCustomComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
 
 		onImageResolved: PropTypes.func,
 

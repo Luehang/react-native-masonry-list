@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {
+    isReactComponent
+} from "./../utils";
 
 export default class CustomImageUnit extends React.PureComponent {
 	static propTypes = {
@@ -8,7 +11,10 @@ export default class CustomImageUnit extends React.PureComponent {
 		height: PropTypes.number.isRequired,
 		gutter: PropTypes.number.isRequired,
 		source: PropTypes.any.isRequired,
-		completeCustomComponent: PropTypes.func.isRequired,
+		completeCustomComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]).isRequired,
 	}
 
 	render() {
@@ -25,6 +31,9 @@ export default class CustomImageUnit extends React.PureComponent {
 			},
 			data: data
 		};
+		if (isReactComponent(completeCustomComponent)) {
+			return React.createElement(completeCustomComponent, params);
+		}
 		return completeCustomComponent(params);
 	}
 }

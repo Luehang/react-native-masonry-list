@@ -21,13 +21,22 @@ export default class Column extends React.PureComponent {
 			PropTypes.object
 		]),
 		customImageProps: PropTypes.object,
-		completeCustomComponent: PropTypes.func,
+		completeCustomComponent: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
 
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 
-		renderIndividualHeader: PropTypes.func,
-		renderIndividualFooter: PropTypes.func
+		renderIndividualHeader: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
+		renderIndividualFooter: PropTypes.oneOfType([
+			PropTypes.func,
+			PropTypes.node
+		]),
 	};
 
 	_renderItem = ({item, index}) => {
