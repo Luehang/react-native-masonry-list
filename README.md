@@ -6,6 +6,8 @@
 
 > An easy and simple to use React Native component to render a custom high performant masonry layout for images. It uses a smart algorithm to sort the images evenly as possible according to the index position or fill in as soon as the image is fetched. Includes support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
+> Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonry-list) for a complete documentation.
+
 <br/>
 <br/>
 <br/>
@@ -82,6 +84,8 @@ Add an ``import`` to the top of the file.  At minimal, declare the ``MasonryList
 
 #### :information_source: Local images must have a defined dimensions field with width and height.
 
+> If you like [`react-native-masonry-list`](https://github.com/Luehang/react-native-masonry-list), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-masonry-list). Thanks.
+
 ```javascript
 import MasonryList from "react-native-masonry-list";
 
@@ -139,6 +143,8 @@ render() {
 # :large_blue_diamond: Props
 
 :information_source: **Version \*1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
+
+> If you like [`react-native-masonry-list`](https://github.com/Luehang/react-native-masonry-list), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-masonry-list). Thanks.
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
