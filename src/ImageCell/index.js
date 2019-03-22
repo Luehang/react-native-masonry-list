@@ -120,7 +120,7 @@ export default class ImageCell extends React.PureComponent {
 				});
 			}
 			else if (typeof renderIndividualFooter === "function") {
-				renderFooter = renderIndividualFooter();
+				renderFooter = renderIndividualFooter(data, data.index);
 			}
 			else if (isElement(renderIndividualFooter)) {
 				renderFooter = renderIndividualFooter;
