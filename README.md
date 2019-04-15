@@ -41,17 +41,17 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonr
 <br/>
 <br/>
 
-# Index
+# :open_file_folder: Index
 
-### 1.  [Install](#large_blue_diamond-install)
-### 2.  [Usage Example](#large_blue_diamond-usage-example)
-### 3.  [API](#large_blue_diamond-api)
-### 4.  :books: [Props](#large_blue_diamond-props)
-### 5.  [Helpful Hints](#large_blue_diamond-helpful-hints)
-### 6.  [Example Project](#large_blue_diamond-example-project)
-### 7.  [Author](#large_blue_diamond-author)
-### 8.  [Contribute](#large_blue_diamond-contribute)
-### 9.  [License](#large_blue_diamond-license)
+### 1.  [Install](#gem-install)
+### 2.  [Usage Example](#tada-usage-example)
+### 3.  [API](#nut_and_bolt-api)
+### 4.  :books: [Props](#books-props)
+### 5.  [Helpful Hints](#memo-helpful-hints)
+### 6.  [Example Project](#clapper-example-project)
+### 7.  [Author](#santa-author)
+### 8.  [Contribute](#clap-contribute)
+### 9.  [License](#page_facing_up-license)
 
 <br/>
 <br/>
@@ -62,7 +62,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonr
 <br/>
 <br/>
 
-## :large_blue_diamond: Install
+## :gem: Install
 
 Type in the following to the command line to install the dependency.
 
@@ -85,7 +85,7 @@ $ yarn add react-native-masonry-list
 <br/>
 <br/>
 
-## :large_blue_diamond: Usage Example
+## :tada: Usage Example
 
 Add an ``import`` to the top of the file.  At minimal, declare the ``MasonryList`` component in the ``render()`` method providing an array of data for the ``images`` prop.
 
@@ -141,13 +141,13 @@ render() {
 <br/>
 <br/>
 
-## :large_blue_diamond: API
+## :nut_and_bolt: API
 
 ``<MasonryList />`` component accepts the following props...
 
 <br/>
 
-# :large_blue_diamond: Props
+# :books: Props
 
 :information_source: **Version \*1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
 
@@ -182,7 +182,7 @@ render() {
 <br/>
 <br/>
 
-## :large_blue_diamond: Helpful Hints
+## :memo: Helpful Hints
 
 :information_source: **Version \*2.1.0 update (or greater versions):**  `itemSource` prop
 
@@ -261,7 +261,7 @@ render() {
 <br/>
 <br/>
 
-## :large_blue_diamond: Example Project
+## :clapper: Example Project
 
 Perform steps 1-2 to run locally:
 
@@ -305,7 +305,7 @@ $ cd react-native-masonry-list/example/
 <br/>
 <br/>
 
-## :large_blue_diamond: Author
+## :santa: Author
 
 <a href="https://www.facebook.com/lue.hang">
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
@@ -322,13 +322,13 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 <br/>
 <br/>
 
-## :large_blue_diamond: Contribute
+## :clap: Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-masonry-list/pulls) are welcomed.
 
 <br/>
 
-### :large_blue_diamond: Contributors
+### :tophat: Contributors
 
 Contributors will be posted here.
 
@@ -338,7 +338,7 @@ Contributors will be posted here.
 
 <br/>
 
-### :small_blue_diamond: Beginners
+### :baby: Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-masonry-list/issues).
 
@@ -351,6 +351,6 @@ Not sure where to start, or a beginner? Take a look at the [issues page](https:/
 <br/>
 <br/>
 
-## :large_blue_diamond: License
+## :page_facing_up: License
 
 MIT © [Lue Hang](https://luehangs.site), as found in the LICENSE file.
