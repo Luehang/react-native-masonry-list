@@ -4,9 +4,9 @@
 <br/>
 <br/>
 
-> An easy and simple to use React Native component to render a custom high performant masonry layout for images. It uses a smart algorithm to sort the images evenly as possible according to the index position or fill in as soon as the image is fetched. Includes support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
+An easy and simple to use React Native component to render a custom high performant masonry layout for images. It uses a smart algorithm to sort the images evenly as possible according to the index position or fill in as soon as the image is fetched. Includes support for both iOS and Android.
 
-> Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonry-list) for a complete documentation.
+Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonry-list) for a complete documentation.
 
 - Dynamic images, columns, spacing and container width.
 - Smart algorithm for eveningly laying out images.
