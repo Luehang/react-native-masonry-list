@@ -8,6 +8,13 @@
 
 > Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonry-list) for a complete documentation.
 
+- Dynamic images, columns, spacing and container width.
+- Smart algorithm for eveningly laying out images.
+- Can be use with deeply rooted data and many fieldnames. `source`, `source.uri`, `uri`, `URI`, `url` or `URL`.
+- Support for rendering all local and remote images with no missing images.
+- Support for dynamic device rotation.
+- Easily and highly customizable.
+
 <br/>
 <br/>
 <br/>
