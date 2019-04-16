@@ -14,6 +14,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonr
 - Support for rendering all local and remote images with no missing images.
 - Support for dynamic device rotation.
 - Easily and highly customizable.
+- Support both iOS and Android.
 
 <br/>
 <br/>
