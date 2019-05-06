@@ -374,6 +374,7 @@ export default class MasonryList extends React.PureComponent {
 					return "COLUMN-" + index.toString() + "/"; // + (this.props.columns - 1);
 				}}
 				data={this.state._sortedData}
+				refreshControl={this.props.refreshControl}
 				renderItem={({item, index}) => {
 					return (
 						<Column
