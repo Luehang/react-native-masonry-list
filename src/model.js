@@ -1,5 +1,5 @@
 import { Image } from "react-native";
-import Task from "data.task";
+import Task from "./task";
 import { setItemSource } from "./utils";
 
 export const resolveImage = (uri, image, data, itemSource) => {
