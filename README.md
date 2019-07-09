@@ -137,6 +137,36 @@ render() {
 ```
 
 <br/>
+
+***
+<br/>
+
+## :tada: Efficiently Add More Images
+
+**Version \*2.12.0 update:** Without rerendering the images.
+
+```javascript
+import MasonryList from "react-native-masonry-list";
+
+//...
+// example function to add more images
+addMoreImages(newImages) {
+    this.setState({
+        images: this.state.images.concat(newImages)
+    });
+}
+
+render() {
+    return (
+        <MasonryList
+            images={this.state.images}
+        />
+    );
+}
+//...
+```
+
+<br/>
 <br/>
 <a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LueHsoft LueH LABS Lue Hang luehang"/></a>
 <br/>
@@ -164,6 +194,7 @@ render() {
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `boolean` | false |
 | `backgroundColor`             | Set the color of the background. **Version \*1.3.0 update**. | `string` | "#fff"
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
+| `listContainerStyle`          | Styles for the list container. | `object` | |
 | `containerWidth`              | The width of the masonry list layout. Adding this will improve performance. **Version \*2.0.0 update** | `number` |
 | `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `React.Component` | `Image` module import of react-native |
 | `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `object` | |
@@ -309,7 +340,7 @@ $ cd react-native-masonry-list/example/
 ## :santa: Author
 
 <a href="https://www.facebook.com/lue.hang">
-<img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
+    <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
 </a>
 
 Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
@@ -333,9 +364,17 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 
 Contributors will be posted here.
 
-<a href="https://github.com/sahdev0">
-<img src="https://www.luehangs.site/images/react-native-masonry-list-contributor-circle-100px-sahdev0.png"/>
-</a>
+<p align="left-align">
+    <a href="https://github.com/folktale">
+        <img width="100" hspace="5" src="https://www.luehangs.site/images/react-native-masonry-list-contributor-3-circle-100px.png"/>
+    </a>
+    <a href="https://github.com/hejun041">
+        <img width="100" hspace="5" src="https://www.luehangs.site/images/react-native-masonry-list-contributor-2-circle-100px.png"/>
+    </a>
+    <a href="https://github.com/sahdev0">
+        <img width="100" hspace="5" src="https://www.luehangs.site/images/react-native-masonry-list-contributor-circle-100px-sahdev0.png"/>
+    </a>
+</p>
 
 <br/>
 
