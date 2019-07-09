@@ -1,6 +1,6 @@
 import { Image } from "react-native";
 import Task from "./task";
-import { setItemSource } from "./utils";
+import { setItemSource } from "./../utils";
 
 export const resolveImage = (uri, image, data, itemSource) => {
 	if (data && itemSource && itemSource.length > 0) {
@@ -11,8 +11,8 @@ export const resolveImage = (uri, image, data, itemSource) => {
 					const resolvedData = setItemSource(data, itemSource, image);
 					resolve({
 						...resolvedData,
-					// eslint-disable-next-line
 					});
+				// eslint-disable-next-line no-undef
 				}, (err) => reject(err));
 			}
 		);
@@ -23,7 +23,7 @@ export const resolveImage = (uri, image, data, itemSource) => {
 			width,
 			height
 		}
-	// eslint-disable-next-line
+	// eslint-disable-next-line no-undef
 	}), (err) => reject(err)));
 };
 
@@ -35,7 +35,7 @@ export const resolveLocal = (image, data, itemSource) => {
 				resolve({
 					...resolvedData
 				});
-			// eslint-disable-next-line
+			// eslint-disable-next-line no-undef
 			}, (err) => reject(err));
 		}
 		if (image.width && image.height) {
@@ -45,7 +45,7 @@ export const resolveLocal = (image, data, itemSource) => {
 				resolve({
 					...resolvedData
 				});
-			// eslint-disable-next-line
+			// eslint-disable-next-line no-undef
 			}, (err) => reject(err));
 		}
 	}
@@ -54,7 +54,7 @@ export const resolveLocal = (image, data, itemSource) => {
 			resolve({
 				...image
 			});
-		// eslint-disable-next-line
+		// eslint-disable-next-line no-undef
 		}, (err) => reject(err));
 	}
 	if (image.width && image.height) {
@@ -66,7 +66,7 @@ export const resolveLocal = (image, data, itemSource) => {
 					height: image.height
 				}
 			});
-		// eslint-disable-next-line
+		// eslint-disable-next-line no-undef
 		}, (err) => reject(err));
 	}
 };

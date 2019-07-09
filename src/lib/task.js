@@ -3,9 +3,11 @@
  * @private
  * @summary (Any... -> Any) -> Void
  */
-var delayed = typeof setImmediate !== "undefined"?  setImmediate
-            : typeof process !== "undefined"?       process.nextTick
-            : /* otherwise */                       setTimeout
+var delayed = typeof setImmediate !== "undefined"
+    ? setImmediate
+    : typeof process !== "undefined"
+        ? process.nextTick
+        : /* otherwise */ setTimeout;
 
 /**
  * @module lib/task
@@ -211,8 +213,10 @@ Task.prototype.concat = function _concat(that) {
         function guard(f) {
             return function(x) {
                 if (!done) {
-                done = true;
-                delayed(function(){ cleanupBoth(allState) })
+                    done = true;
+                    delayed(function(){
+                        cleanupBoth(allState);
+                    });
                     return f(x);
                 }
             };

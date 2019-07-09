@@ -25,6 +25,7 @@ class Masonry extends React.PureComponent {
         sorted: PropTypes.bool,
         backgroundColor: PropTypes.string,
         imageContainerStyle: PropTypes.object,
+        listContainerStyle: PropTypes.object,
         renderIndividualHeader: PropTypes.oneOfType([
             PropTypes.func,
             PropTypes.node
@@ -218,6 +219,7 @@ class Masonry extends React.PureComponent {
                     sorted={this.props.sorted}
                     backgroundColor={this.props.backgroundColor}
                     imageContainerStyle={this.props.imageContainerStyle}
+                    listContainerStyle={this.props.listContainerStyle}
                     renderIndividualHeader={this.props.renderIndividualHeader}
                     renderIndividualFooter={this.props.renderIndividualFooter}
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
