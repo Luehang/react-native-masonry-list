@@ -25,6 +25,7 @@ export default class Column extends React.PureComponent {
 			PropTypes.func,
 			PropTypes.node
 		]),
+		colIndex: PropTypes.number,
 
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
@@ -88,7 +89,9 @@ export default class Column extends React.PureComponent {
 		);
 	}
 
-	_keyExtractor = (item, index) => ("IMAGE-CELL-" + index.toString() + "---" + (item.id ? item.id : "0"));
+	_keyExtractor = (item, index, colIndex) => {
+		return "IMAGE-CELL-" + index.toString() + "---" + (item.id ? item.id : colIndex);
+	}
 
 	render() {
 		return (
@@ -99,9 +102,11 @@ export default class Column extends React.PureComponent {
 					overflow: "hidden",
 					backgroundColor: this.props.backgroundColor,
 				}}
-				key={this.props.columnKey}
+				key={this.props.colIndex}
 				data={this.props.data}
-				keyExtractor={this._keyExtractor}
+				keyExtractor={(item, index) => {
+					return this._keyExtractor(item, index, this.props.colIndex);
+				}}
 				initialNumToRender={this.props.initialNumInColsToRender}
 				removeClippedSubviews={true}
 				renderItem={this._renderItem}

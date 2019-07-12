@@ -35,6 +35,7 @@ class Masonry extends React.PureComponent {
             PropTypes.node
         ]),
         masonryFlatListColProps: PropTypes.object,
+        rerender: PropTypes.bool,
 
         customImageComponent: PropTypes.oneOfType([
             PropTypes.func,
@@ -68,6 +69,7 @@ class Masonry extends React.PureComponent {
         sorted: false,
         backgroundColor: "#fff",
         imageContainerStyle: {},
+        rerender: false,
         onEndReachedThreshold: 25
     }
 
@@ -205,6 +207,7 @@ class Masonry extends React.PureComponent {
                     containerWidth={this.props.containerWidth}
                     itemSource={this.props.itemSource}
                     orientation={this.state.orientation}
+                    rerender={this.props.rerender}
                     // ref={(component) => {
                     //     this.masonryListRef = component;
                     //     this.props.masonryListRef &&

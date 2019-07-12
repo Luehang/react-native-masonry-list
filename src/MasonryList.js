@@ -42,6 +42,7 @@ export default class MasonryList extends React.PureComponent {
 			PropTypes.node
 		]),
 		masonryFlatListColProps: PropTypes.object,
+		rerender: PropTypes.bool,
 
 		customImageComponent: PropTypes.oneOfType([
 			PropTypes.func,
@@ -138,32 +139,50 @@ export default class MasonryList extends React.PureComponent {
 		// 	);
 		// }
 
-		// load more add datasource
-		if (nextProps.images.length > this.props.images.length) {
-			let newImages = nextProps.images.concat().splice(this.props.images.length, nextProps.images.length); // nextProps.images
-			this.resolveImages(
-				nextProps.itemSource,
-				newImages,
-				nextProps.layoutDimensions,
-				nextProps.columns,
-				nextProps.sorted
-			);
-		}
-		// pull refresh reset datasource
-		if (nextProps.images.length < this.props.images.length) {
+		if (!this.props.rerender) {
+			// load more add datasource
+			if (nextProps.images.length > this.props.images.length) {
+				let newImages = nextProps.images.concat().splice(this.props.images.length, nextProps.images.length); // nextProps.images
+				this.resolveImages(
+					nextProps.itemSource,
+					newImages,
+					nextProps.layoutDimensions,
+					nextProps.columns,
+					nextProps.sorted
+				);
+			}
+
+			// pull refresh reset datasource
+			if (nextProps.images.length < this.props.images.length) {
+					this.unsortedIndex = 0;
+					this.renderIndex = 0;
+					this.columnHeightTotals = [];
+					this.columnCounting = 1;
+					this.columnHighestHeight = null;
+				// this.renderIndex = 0;
+				this.resolveImages(
+					nextProps.itemSource,
+					nextProps.images,
+					nextProps.layoutDimensions,
+					nextProps.columns,
+					nextProps.sorted
+				);
+			}
+		} else {
+			if (nextProps.images !== this.props.images) {
 				this.unsortedIndex = 0;
 				this.renderIndex = 0;
 				this.columnHeightTotals = [];
 				this.columnCounting = 1;
 				this.columnHighestHeight = null;
-			// this.renderIndex = 0;
-			this.resolveImages(
-				nextProps.itemSource,
-				nextProps.images,
-				nextProps.layoutDimensions,
-				nextProps.columns,
-				nextProps.sorted
-			);
+				this.resolveImages(
+					nextProps.itemSource,
+					nextProps.images,
+					nextProps.layoutDimensions,
+					nextProps.columns,
+					nextProps.sorted
+				);
+			}
 		}
 	}
 
@@ -538,6 +557,7 @@ export default class MasonryList extends React.PureComponent {
 							imageContainerStyle={this.props.imageContainerStyle}
 							spacing={this.props.spacing}
 							key={`MASONRY-COLUMN-${index}`}
+							colIndex={index}
 
 							customImageComponent={this.props.customImageComponent}
 							customImageProps={this.props.customImageProps}
