@@ -149,7 +149,11 @@ render() {
 import MasonryList from "react-native-masonry-list";
 
 //...
-// example function to add more images
+/**
+ * Example method to add more images.
+ *
+ * @method addMoreImages
+ */
 addMoreImages(newImages) {
     this.setState({
         images: this.state.images.concat(newImages)
@@ -159,6 +163,42 @@ addMoreImages(newImages) {
 render() {
     return (
         <MasonryList
+            images={this.state.images}
+        />
+    );
+}
+//...
+```
+
+<br/>
+
+***
+<br/>
+
+## :tada: Add New Images
+
+**Version \*2.13.0 update:** Rerendering the images.
+
+```javascript
+import MasonryList from "react-native-masonry-list";
+
+//...
+/**
+ * Example method to add new images.
+ *
+ * @method addNewImages
+ * @config Set react-native-masonry-list's "rerender" prop to true.
+ */
+addNewImages(newImages) {
+    this.setState({
+        images: newImages
+    });
+}
+
+render() {
+    return (
+        <MasonryList
+            rerender={true}
             images={this.state.images}
         />
     );
@@ -192,6 +232,7 @@ render() {
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `boolean` | false |
+| `rerender`                    | Rerender the images when it changes. | `boolean` | false |
 | `backgroundColor`             | Set the color of the background. **Version \*1.3.0 update**. | `string` | "#fff"
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
 | `listContainerStyle`          | Styles for the list container. | `object` | |
