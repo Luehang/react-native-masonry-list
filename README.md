@@ -220,8 +220,6 @@ render() {
 
 # :books: Props
 
-:information_source: **Version \*1.2.2 update:** New props for `customImageComponent`, `customImageProps` and `completeCustomComponent`.
-
 > If you like [`react-native-masonry-list`](https://github.com/Luehang/react-native-masonry-list), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-masonry-list). Thanks.
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
@@ -237,9 +235,9 @@ render() {
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
 | `listContainerStyle`          | Styles for the list container. | `object` | |
 | `containerWidth`              | The width of the masonry list layout. Adding this will improve performance. **Version \*2.0.0 update** | `number` |
-| `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. | `React.Component` | `Image` module import of react-native |
-| `customImageProps`            | An object to pass additional properties to the `customImageComponent` | `object` | |
-| `completeCustomComponent`     | This Function or React Component is called as an alternative to render each image. Must return a React Element or Component, and it is required to have the source and style for the component to display proper masonry. `({ source: object, style: { width: number, height: number, margin: number }, data: object }) => React.Element` | `Function` or `React.Component` | |
+| `customImageComponent`        | Use a custom component to be rendered for the image as long as the component follows the standard interface of the `react-native` `Image` component. **Version \*1.2.2 update**. | `React.Component` | `Image` module import of react-native |
+| `customImageProps`            | An object to pass additional properties to the `customImageComponent`. **Version \*1.2.2 update**. | `object` | |
+| `completeCustomComponent`     | This Function or React Component is called as an alternative to render each image. Must return a React Element or Component, and it is required to have the source and style for the component to display proper masonry. `({ source: object, style: { width: number, height: number, margin: number }, data: object }) => React.Element` **Version \*1.2.2 update**. | `Function` or `React.Component` | |
 | `renderIndividualHeader`      | A component, React Element, or Function that is executed **ABOVE** each individual masonry image. `(item: { column: number, index: number, dimensions: { width: number, height: number }, masonryDimensions: { width: number, height: number, margin: number, gutter: number }, source: object, ...data }, index: number) => ?React.Element` | `Function`, `React.Component`, or `React.Element` | |
 | `renderIndividualFooter`      | A component, React Element, or Function that is executed **BELOW** each individual masonry image. `(item: { column: number, index: number, dimensions: { width: number, height: number }, masonryDimensions: { width: number, height: number, margin: number, gutter: number }, source: object, ...data }, index: number) => ?React.Element` | `Function`, `React.Component`, or `React.Element` | |
 | `onPressImage`                | Custom function that is executed after a single tap on the image. `(item: object, index: number) => void` **index params included in Version \*2.2.0 update** | `Function` | |
