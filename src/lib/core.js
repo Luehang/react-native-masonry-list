@@ -1,7 +1,7 @@
 /**
- * Provides pure functional combinators.
+ * Provides pure functional combinators and higher order function.
  *
- * @module lib/core-combinators-and-higher-order-func
+ * @module lib/core
  */
 
 // -- Aliases ----------------------------------------------------------

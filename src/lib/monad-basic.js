@@ -5,7 +5,7 @@
  */
 
 // -- Dependencies -----------------------------------------------------
-var Core = require("./core-combinators-and-higher-order-func");
+var Core = require("./core");
 
 
 // -- Aliases ----------------------------------------------------------
