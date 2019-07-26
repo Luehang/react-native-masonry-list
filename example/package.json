@@ -1,7 +1,7 @@
 {
   "name": "ReactNativeMasonryListExample",
-  "version": "2.0.0",
-  "private": false,
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
@@ -9,17 +9,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "prop-types": "15.6.2",
-    "react": "16.6.3",
-    "react-native": "0.58.4",
-    "react-native-masonry-list": "^2.2.7"
+    "react": "16.8.3",
+    "react-native": "0.59.10",
+    "react-native-masonry-list": "^2.13.0"
   },
   "devDependencies": {
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "24.1.0",
-    "jest": "24.1.0",
-    "metro-react-native-babel-preset": "0.51.1",
-    "react-test-renderer": "16.6.3"
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.55.0",
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
     "preset": "react-native"
