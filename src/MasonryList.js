@@ -369,8 +369,7 @@ export default class MasonryList extends React.PureComponent {
 											_sortedData: sortedData
 										};
 									});
-								}
-								else {
+								} else {
 									const sortedData = insertIntoColumn(finalizedData, [], sorted);
 									this._calculatedData = [finalizedData];
 									this.renderIndex++;
