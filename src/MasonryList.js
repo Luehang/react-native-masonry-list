@@ -139,49 +139,51 @@ export default class MasonryList extends React.PureComponent {
 		// 	);
 		// }
 
-		if (!this.props.rerender) {
-			// load more add datasource
-			if (nextProps.images.length > this.props.images.length) {
-				let newImages = nextProps.images.concat().splice(this.props.images.length, nextProps.images.length); // nextProps.images
-				this.resolveImages(
-					nextProps.itemSource,
-					newImages,
-					nextProps.layoutDimensions,
-					nextProps.columns,
-					nextProps.sorted
-				);
-			}
+		if (this.props.images.length !== 0 ){
+			if (!this.props.rerender) {
+				// load more add datasource
+				if (nextProps.images.length > this.props.images.length) {
+					let newImages = nextProps.images.concat().splice(this.props.images.length, nextProps.images.length); // nextProps.images
+					this.resolveImages(
+						nextProps.itemSource,
+						newImages,
+						nextProps.layoutDimensions,
+						nextProps.columns,
+						nextProps.sorted
+					);
+				}
 
-			// pull refresh reset datasource
-			if (nextProps.images.length < this.props.images.length) {
+				// pull refresh reset datasource
+				if (nextProps.images.length < this.props.images.length) {
 					this.unsortedIndex = 0;
 					this.renderIndex = 0;
 					this.columnHeightTotals = [];
 					this.columnCounting = 1;
 					this.columnHighestHeight = null;
-				// this.renderIndex = 0;
-				this.resolveImages(
-					nextProps.itemSource,
-					nextProps.images,
-					nextProps.layoutDimensions,
-					nextProps.columns,
-					nextProps.sorted
-				);
-			}
-		} else {
-			if (nextProps.images !== this.props.images) {
-				this.unsortedIndex = 0;
-				this.renderIndex = 0;
-				this.columnHeightTotals = [];
-				this.columnCounting = 1;
-				this.columnHighestHeight = null;
-				this.resolveImages(
-					nextProps.itemSource,
-					nextProps.images,
-					nextProps.layoutDimensions,
-					nextProps.columns,
-					nextProps.sorted
-				);
+					// this.renderIndex = 0;
+					this.resolveImages(
+						nextProps.itemSource,
+						nextProps.images,
+						nextProps.layoutDimensions,
+						nextProps.columns,
+						nextProps.sorted
+					);
+				}
+			} else {
+				if (nextProps.images !== this.props.images) {
+					this.unsortedIndex = 0;
+					this.renderIndex = 0;
+					this.columnHeightTotals = [];
+					this.columnCounting = 1;
+					this.columnHighestHeight = null;
+					this.resolveImages(
+						nextProps.itemSource,
+						nextProps.images,
+						nextProps.layoutDimensions,
+						nextProps.columns,
+						nextProps.sorted
+					);
+				}
 			}
 		}
 	}
@@ -367,7 +369,8 @@ export default class MasonryList extends React.PureComponent {
 											_sortedData: sortedData
 										};
 									});
-								} else {
+								}
+								else {
 									const sortedData = insertIntoColumn(finalizedData, [], sorted);
 									this._calculatedData = [finalizedData];
 									this.renderIndex++;
