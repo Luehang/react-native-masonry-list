@@ -418,17 +418,11 @@ export default class MasonryList extends React.PureComponent {
 					}
 				});
 			if (sorted) {
-				sequence(Task, resolveImages.map((resolveTask) => {
-					if (resolveTask && resolveTask.fork) {
-						return resolveTask;
-					}
-				})).fork(
-					(err) => {
-						// eslint-disable-next-line handle-callback-err, no-console
-						console.warn("react-native-masonry-list", "Image failed to load.", err);
-					},
-					(resolvedImages) => {
-						resolvedImages.map((resolvedImage, index) => {
+				    resolveImages.map((resolveTask, index) => {
+            resolveTask.fork(err => {
+              console.warn("react-native-masonry-list", "Image failed to load.", err);
+            }, (resolvedImage) => {
+
 							if (this.renderIndex !== 0) {
 								index = this.renderIndex;
 							}
