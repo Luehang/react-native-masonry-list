@@ -11,7 +11,6 @@ import {
 
 class Masonry extends React.PureComponent {
     _mounted = false;
-    // masonryListRef;
 
     static propTypes = {
         itemSource: PropTypes.array,
@@ -87,41 +86,62 @@ class Masonry extends React.PureComponent {
                     // Bug fix for displaying layout
                     // dimensions in scrolling views
                     width: 100,
-                }
+                },
+                containerWidth: this.props.containerWidth,
+                columns: this.props.columns,
+                spacing: this.props.spacing,
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {     
         this._mounted = true;
     }
 
-    componentWillReceiveProps = (nextProps) => {
-        if (!nextProps.containerWidth && !this.props.containerWidth) {
-            if (nextProps.columns !== this.props.columns ||
-                nextProps.spacing !== this.props.spacing) {
-                    this._setColumnDimensions(
-                        {
-                            height: this.state.layoutDimensions.height,
-                            width: this.state.layoutDimensions.width
+    static getDerivedStateFromProps(nextProps, prevState){
+        if (!nextProps.containerWidth && !prevState.containerWidth) {
+            if (nextProps.columns !== prevState.columns ||
+                nextProps.spacing !== prevState.spacing) {
+                    const height = prevState.layoutDimensions.height;
+                    const width = prevState.layoutDimensions.width;
+                    const nColumns = nextProps.columns ? nextProps.columns : 2;
+                    const spacing = nextProps.spacing ? nextProps.spacing : 1;            
+                    const gutterBase = width / 100;
+                    const gutterSize = gutterBase * spacing;            
+                    const actualWidth = width;            
+                    const columnWidth = Math.floor(actualWidth / nColumns); 
+                    return {
+                        layoutDimensions: {
+                            width,
+                            height,
+                            columnWidth,
+                            gutterSize
                         },
-                        nextProps.columns,
-                        nextProps.spacing
-                    );
+                        containerWidth: nextProps.containerWidth,
+                        columns: nextProps.columns,
+                        spacing: nextProps.spacing
+                    }
+
             }
-        } else if (nextProps.containerWidth || this.props.containerWidth) {
-            if (nextProps.containerWidth !== this.props.containerWidth ||
-                nextProps.columns !== this.props.columns ||
-                nextProps.spacing !== this.props.spacing) {
-                    this.setState({
+            return null;
+        } else if (nextProps.containerWidth || prevState.containerWidth) { 
+            if (nextProps.containerWidth !== prevState.containerWidth ||
+                nextProps.columns !== prevState.columns ||
+                nextProps.spacing !== prevState.spacing) {
+                    return {
                         layoutDimensions: {
                             width: nextProps.containerWidth,
                             gutterSize: (nextProps.containerWidth / 100) * nextProps.spacing,
                             columnWidth: nextProps.containerWidth / nextProps.columns
-                        }
-                    });
-            }
-        }
-	}
+                        },
+                        containerWidth: nextProps.containerWidth,
+                        columns: nextProps.columns,
+                        spacing: nextProps.spacing
+                    }
+            }            
+            return null;
+        }        
+        return null;
+    }
 
     _layoutChange = (ev) => {
         const { width, height } = ev.nativeEvent.layout;
