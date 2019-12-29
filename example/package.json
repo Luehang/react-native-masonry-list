@@ -1,25 +1,33 @@
 {
-  "name": "ReactNativeMasonryListExample",
-  "version": "0.0.1",
-  "private": true,
+  "name": "react-native-masonry-list-example",
+  "version": "2.0.0",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "postinstall": "cd ios/ && pod install",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "jest"
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "react": "16.8.3",
-    "react-native": "0.59.10",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
     "react-native-masonry-list": "^2.13.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.55.0",
-    "react-test-renderer": "16.8.3"
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "babel-jest": "^24.9.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.5.1",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-native": "^3.5.0",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "react-native"
