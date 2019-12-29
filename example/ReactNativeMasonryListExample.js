@@ -10,6 +10,7 @@ import {
     Image,
 } from "react-native";
 import MasonryList from "react-native-masonry-list";
+// import MasonryList from "./src";
 
 import testData from "./data";
 
@@ -96,29 +97,11 @@ export default class ReactNativeMasonryListExample extends React.Component {
         statusBarPaddingTop: isIPhoneX() ? 30 : platform === "ios" ? 20 : 0
     }
 
-    onLayoutChange = (ev) => {
-        const { width, height } = ev.nativeEvent.layout;
-        let maxComp = Math.max(width, height);
-
-        if (width >= maxComp) {
-            this.setState({
-                columns: 3,
-                statusBarPaddingTop: 0
-            });
-        } else if (width < maxComp) {
-            this.setState({
-                columns: 2,
-                statusBarPaddingTop: isIPhoneX() ? 30 : platform === "ios" ? 20 : 0
-            });
-        }
-    }
-
     render() {
         const { statusBarPaddingTop } = this.state;
 
         return (
             <View
-                onLayout={(ev) => this.onLayoutChange(ev)}
                 style={styles.container}
             >
                 <View style={[styles.header, styles.mobileHeader, { paddingTop: statusBarPaddingTop }]}>
