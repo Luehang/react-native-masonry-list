@@ -73,7 +73,7 @@ export default class MasonryList extends React.PureComponent {
 	columnCounting = 1;
 	columnHighestHeight = null;
 
-	componentWillMount() {
+	componentDidMount() {
 		InteractionManager.runAfterInteractions(() => {
 			if (this.props.containerWidth) {
 				this.resolveImages(
@@ -87,7 +87,7 @@ export default class MasonryList extends React.PureComponent {
 		});
 	}
 
-	componentWillReceiveProps = (nextProps) => {
+	UNSAFE_componentWillReceiveProps = (nextProps) => {
 		if (nextProps.layoutDimensions.width && nextProps.layoutDimensions.height &&
 			nextProps.layoutDimensions.columnWidth && nextProps.layoutDimensions.gutterSize &&
 			nextProps.layoutDimensions.width !== this.props.layoutDimensions.width &&

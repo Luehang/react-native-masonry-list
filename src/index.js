@@ -91,11 +91,11 @@ class Masonry extends React.PureComponent {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this._mounted = true;
     }
 
-    componentWillReceiveProps = (nextProps) => {
+    UNSAFE_componentWillReceiveProps = (nextProps) => {
         if (!nextProps.containerWidth && !this.props.containerWidth) {
             if (nextProps.columns !== this.props.columns ||
                 nextProps.spacing !== this.props.spacing) {
