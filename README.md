@@ -232,7 +232,7 @@ render() {
 | ----- | ----------- | ---- | ------- |
 | `images`                      | An array of objects.  **Local images must have a defined dimensions field with width and height.**  `source`, `source.uri`, `uri`, `URI`, `url` or `URL` is a required field (if multiple similar fields in an image object, priority will go from start `source` to last `URL`). **EX.** `[{ source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg", dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]`  | `Array` | Required |
 | `columns`                     | Desired number of columns. | `number` | 2 |
-| `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. | `function` | |
+| `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. `(info: {distanceFromEnd: number}) => void` | `function` | |
 | `onEndReachedThreshold`       | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. | `number` | |
 | `initialColToRender`          | How many columns to render in the initial batch. | `number` | `columns` |
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
