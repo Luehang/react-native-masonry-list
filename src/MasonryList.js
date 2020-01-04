@@ -59,6 +59,7 @@ export default class MasonryList extends React.PureComponent {
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 
+		onEndReached: PropTypes.func,
 		onEndReachedThreshold: PropTypes.number,
 	};
 
@@ -515,10 +516,14 @@ export default class MasonryList extends React.PureComponent {
 		}
 	}
 
-	_onCallEndReach = () => {
-		this.props.masonryFlatListColProps &&
-			this.props.masonryFlatListColProps.onEndReached &&
-			this.props.masonryFlatListColProps.onEndReached();
+	// (info: {distanceFromEnd: number}) => void
+	_onCallEndReach = (info) => {
+		if (this.props.masonryFlatListColProps &&
+			this.props.masonryFlatListColProps.onEndReached) {
+			this.props.masonryFlatListColProps.onEndReached(info);
+		} else if (this.props.onEndReached) {
+			this.props.onEndReached(info);
+		}
 	}
 
 	render() {
