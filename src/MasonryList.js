@@ -61,6 +61,8 @@ export default class MasonryList extends React.PureComponent {
 
 		onEndReached: PropTypes.func,
 		onEndReachedThreshold: PropTypes.number,
+        refreshing: PropTypes.bool,
+        onRefresh: PropTypes.func
 	};
 
 	state = {
@@ -540,6 +542,8 @@ export default class MasonryList extends React.PureComponent {
 				}, this.props.listContainerStyle]}
 				removeClippedSubviews={true}
 				onEndReachedThreshold={this.props.onEndReachedThreshold}
+				refreshing={this.props.refreshing}
+				onRefresh={this.props.onRefresh}
 				{...this.props.masonryFlatListColProps}
 				onEndReached={this._onCallEndReach}
 				initialNumToRender={
