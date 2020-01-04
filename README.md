@@ -56,10 +56,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-masonr
 
 <br/>
 <br/>
-<br/>
-
----
-<br/>
+<a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LueHsoft LueH LABS Lue Hang luehang"/></a>
 <br/>
 <br/>
 
@@ -130,6 +127,10 @@ render() {
                 { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
                 { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
             ]}
+            // Version *2.14.0 update
+            // onEndReached={() => {
+            //     // add more images when scrolls reaches end
+            // }}
         />
     );
 }
@@ -137,8 +138,9 @@ render() {
 ```
 
 <br/>
-
-***
+<br/>
+<a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LueHsoft LueH LABS Lue Hang luehang"/></a>
+<br/>
 <br/>
 
 ## :tada: Efficiently Add More Images
@@ -164,6 +166,10 @@ render() {
     return (
         <MasonryList
             images={this.state.images}
+            {/* Version *2.14.0 update */}
+            onEndReached={() => {
+                this.addMoreImages(moreImages);
+            }}
         />
     );
 }
@@ -222,10 +228,12 @@ render() {
 
 > If you like [`react-native-masonry-list`](https://github.com/Luehang/react-native-masonry-list), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-masonry-list). Thanks.
 
-| Props                         | Description                                                                                                                                                                                    | Type              | Default |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
+| Props | Description | Type | Default |
+| ----- | ----------- | ---- | ------- |
 | `images`                      | An array of objects.  **Local images must have a defined dimensions field with width and height.**  `source`, `source.uri`, `uri`, `URI`, `url` or `URL` is a required field (if multiple similar fields in an image object, priority will go from start `source` to last `URL`). **EX.** `[{ source: require("yourApp/image.png"), dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg", dimensions: { width: 1080, height: 1920 } }, { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]`  | `Array` | Required |
 | `columns`                     | Desired number of columns. | `number` | 2 |
+| `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. | `function` | |
+| `onEndReachedThreshold`       | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. | `number` | |
 | `initialColToRender`          | How many columns to render in the initial batch. | `number` | `columns` |
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
@@ -336,12 +344,9 @@ render() {
 
 Perform steps 1-2 to run locally:
 
-1. [Clone the Repo](#1-clone-the-repo)
-2. [Install and Run](#2-install-and-run)
-
-<br/>
-
-### :small_blue_diamond: 1. Clone the Repo
+<details>
+<summary>1. Clone the Repo</summary>
+</br>
 
 **Clone** `react-native-masonry-list` locally. In a terminal, run:
 
@@ -349,9 +354,11 @@ Perform steps 1-2 to run locally:
 $ git clone https://github.com/Luehang/react-native-masonry-list.git react-native-masonry-list
 ```
 
-<br/>
+</details>
 
-### :small_blue_diamond: 2. Install and Run
+<details>
+<summary>2. Install and Run</summary>
+</br>
 
 ```bash
 $ cd react-native-masonry-list/example/
@@ -369,6 +376,8 @@ $ cd react-native-masonry-list/example/
 	2. npm install
 	3. emulator running in separate terminal
 	4. npm run android
+
+</details>
 
 <br/>
 <br/>
