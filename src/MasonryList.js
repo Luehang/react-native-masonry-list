@@ -291,12 +291,9 @@ export default class MasonryList extends React.PureComponent {
 						console.warn("react-native-masonry-list", "Image failed to load.", err);
 					},
 					(resolvedImages) => {
-						resolvedImages.map((resolvedData, index) => {
+						resolvedImages.map((resolvedData, i) => {
+							resolvedData.index = i;
 							const resolvedImage = getItemSource(resolvedData, itemSource);
-							if (this.renderIndex !== 0) {
-								index = this.renderIndex;
-							}
-							resolvedData.index = index;
 
 							resolvedImage.masonryDimensions =
 								this._getCalculatedDimensions(
@@ -341,10 +338,9 @@ export default class MasonryList extends React.PureComponent {
 								console.warn("react-native-masonry-list", "Image failed to load.", err);
 							},
 							(resolvedData) => {
-								const resolvedImage = getItemSource(resolvedData, itemSource);
-
-								resolvedImage.index = this.unsortedIndex;
+								resolvedData.index = this.unsortedIndex;
 								this.unsortedIndex++;
+								const resolvedImage = getItemSource(resolvedData, itemSource);
 
 								resolvedImage.masonryDimensions =
 									this._getCalculatedDimensions(
