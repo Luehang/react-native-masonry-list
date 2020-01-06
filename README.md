@@ -104,18 +104,18 @@ render() {
                 // Can be used with different image object fieldnames.
                 // Ex. source, source.uri, uri, URI, url, URL
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
-                { source: require("yourApp/image.png"), 
-                    // IMPORTANT: It is REQUIRED for LOCAL IMAGES
-                    // to include a dimensions field with the
-                    // actual width and height of the image or
-                    // it will throw an error.
-                    dimensions: { width: 1080, height: 1920 }
-                },
-                { source: require("yourApp/image.png"),
-                    // An alternative to the dimensions field.
-                    // This will also be acceptable.
-                    width: 1080,
-                    height: 1920 },
+                // IMPORTANT: It is REQUIRED for LOCAL IMAGES
+                // to include a dimensions field with the
+                // actual width and height of the image or
+                // it will throw an error.
+                // { source: require("yourApp/image.png"),
+                //     dimensions: { width: 1080, height: 1920 }
+                // },
+                // "width" & "height" is an alternative to the dimensions
+                // field that will also be acceptable.
+                // { source: require("yourApp/image.png"),
+                //     width: 1080,
+                //     height: 1920 },
                 { source: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" } },
                 { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
                     // Optional: Adding a dimensions field with
