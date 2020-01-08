@@ -257,6 +257,7 @@ render() {
 | `masonryFlatListColProps`     | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `object` | {} |
 | `emptyView`                   | A component, React Element, or Function that is executed when there is no images.  **Version \*2.9.0 update** | `React.Component`, `React.Element` or `Function` | undefined |
 | `onImageResolved`             | A function called after fetching image and resolving it.  `(image: object, renderIndex: number) => ?object` **Version \*2.8.0 update**. | `Function` | |
+| `onImagesResolveEnd`          | A function called at the end of fetching and resolving.  `(images: array, total: number) => void` **Version \*2.16.0 update**. | `Function` | |
 | `itemSource`                  | Image object entry to the image `source` and `dimensions` or `height` and `width`.  Max is 7 entries/properties to image source.  **Version \*2.1.0 update**.  Learn more about this at the [helpful hints section](#helpful-hints) | `Array` | [] |
 
 <br/>
