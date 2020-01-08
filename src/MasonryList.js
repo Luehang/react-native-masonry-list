@@ -55,6 +55,7 @@ export default class MasonryList extends React.PureComponent {
 		]),
 
 		onImageResolved: PropTypes.func,
+		onImagesResolveEnd: PropTypes.func,
 
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
@@ -69,6 +70,7 @@ export default class MasonryList extends React.PureComponent {
 		_sortedData: []
 	}
 
+	doneTotal = 0;
 	unsortedIndex = 0;
 	renderIndex = 0;
 
@@ -289,6 +291,14 @@ export default class MasonryList extends React.PureComponent {
 					(err) => {
 						// eslint-disable-next-line handle-callback-err, no-console
 						console.warn("react-native-masonry-list", "Image failed to load.", err);
+
+						this.doneTotal++;
+						if (
+							this.props.onImagesResolveEnd &&
+							this.doneTotal === this.props.images.length
+						) {
+							this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
+						}
 					},
 					(resolvedImages) => {
 						resolvedImages.map((resolvedData, i) => {
@@ -326,6 +336,14 @@ export default class MasonryList extends React.PureComponent {
 								this.setState({
 									_sortedData: sortedData
 								});
+
+								this.doneTotal++;
+								if (
+									this.props.onImagesResolveEnd &&
+									this.doneTotal === this.props.images.length
+								) {
+									this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
+								}
 							}
 						});
 					});
@@ -336,6 +354,14 @@ export default class MasonryList extends React.PureComponent {
 							(err) => {
 								// eslint-disable-next-line handle-callback-err, no-console
 								console.warn("react-native-masonry-list", "Image failed to load.", err);
+
+								this.doneTotal++;
+								if (
+									this.props.onImagesResolveEnd &&
+									this.doneTotal === this.props.images.length
+								) {
+									this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
+								}
 							},
 							(resolvedData) => {
 								resolvedData.index = this.unsortedIndex;
@@ -373,6 +399,14 @@ export default class MasonryList extends React.PureComponent {
 									this.setState({
 										_sortedData: sortedData
 									});
+								}
+
+								this.doneTotal++;
+								if (
+									this.props.onImagesResolveEnd &&
+									this.doneTotal === this.props.images.length
+								) {
+									this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
 								}
 							});
 					}
@@ -425,6 +459,14 @@ export default class MasonryList extends React.PureComponent {
 					(err) => {
 						// eslint-disable-next-line handle-callback-err, no-console
 						console.warn("react-native-masonry-list", "Image failed to load.", err);
+
+						this.doneTotal++;
+						if (
+							this.props.onImagesResolveEnd &&
+							this.doneTotal === this.props.images.length
+						) {
+							this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
+						}
 					},
 					(resolvedImages) => {
 						resolvedImages.map((resolvedImage, i) => {
@@ -460,6 +502,14 @@ export default class MasonryList extends React.PureComponent {
 									_sortedData: sortedData
 								});
 							}
+
+							this.doneTotal++;
+							if (
+								this.props.onImagesResolveEnd &&
+								this.doneTotal === this.props.images.length
+							) {
+								this.props.onImagesResolveEnd(this.state._sortedData);
+							}
 						});
 					});
 			} else {
@@ -469,6 +519,14 @@ export default class MasonryList extends React.PureComponent {
 							(err) => {
 								// eslint-disable-next-line handle-callback-err, no-console
 								console.warn("react-native-masonry-list", "Image failed to load.", err);
+
+								this.doneTotal++;
+								if (
+									this.props.onImagesResolveEnd &&
+									this.doneTotal === this.props.images.length
+								) {
+									this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
+								}
 							},
 							(resolvedImage) => {
 								resolvedImage.index = this.unsortedIndex;
@@ -503,6 +561,14 @@ export default class MasonryList extends React.PureComponent {
 									this.setState({
 										_sortedData: sortedData
 									});
+								}
+
+								this.doneTotal++;
+								if (
+									this.props.onImagesResolveEnd &&
+									this.doneTotal === this.props.images.length
+								) {
+									this.props.onImagesResolveEnd(this.state._sortedData);
 								}
 							});
 					}

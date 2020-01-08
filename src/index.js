@@ -48,6 +48,7 @@ class Masonry extends React.PureComponent {
         ]),
 
         onImageResolved: PropTypes.func,
+		onImagesResolveEnd: PropTypes.func,
 
         onPressImage: PropTypes.func,
         onLongPressImage: PropTypes.func,
@@ -234,6 +235,7 @@ class Masonry extends React.PureComponent {
                     completeCustomComponent={this.props.completeCustomComponent}
 
                     onImageResolved={this.props.onImageResolved}
+                    onImagesResolveEnd={this.props.onImagesResolveEnd}
 
                     onPressImage={this.props.onPressImage}
                     onLongPressImage={this.props.onLongPressImage}
