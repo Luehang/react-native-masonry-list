@@ -301,9 +301,12 @@ export default class MasonryList extends React.PureComponent {
 						}
 					},
 					(resolvedImages) => {
-						resolvedImages.map((resolvedData, i) => {
-							resolvedData.index = i;
+						resolvedImages.map((resolvedData, index) => {
 							const resolvedImage = getItemSource(resolvedData, itemSource);
+							if (this.renderIndex !== 0) {
+								index = this.renderIndex;
+							}
+							resolvedData.index = index;
 
 							resolvedImage.masonryDimensions =
 								this._getCalculatedDimensions(
@@ -336,14 +339,14 @@ export default class MasonryList extends React.PureComponent {
 								this.setState({
 									_sortedData: sortedData
 								});
+							}
 
-								this.doneTotal++;
-								if (
-									this.props.onImagesResolveEnd &&
-									this.doneTotal === this.props.images.length
-								) {
-									this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
-								}
+							this.doneTotal++;
+							if (
+								this.props.onImagesResolveEnd &&
+								this.doneTotal === this.props.images.length
+							) {
+								this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
 							}
 						});
 					});
@@ -364,9 +367,10 @@ export default class MasonryList extends React.PureComponent {
 								}
 							},
 							(resolvedData) => {
-								resolvedData.index = this.unsortedIndex;
-								this.unsortedIndex++;
 								const resolvedImage = getItemSource(resolvedData, itemSource);
+
+								resolvedImage.index = this.unsortedIndex;
+								this.unsortedIndex++;
 
 								resolvedImage.masonryDimensions =
 									this._getCalculatedDimensions(
@@ -469,8 +473,11 @@ export default class MasonryList extends React.PureComponent {
 						}
 					},
 					(resolvedImages) => {
-						resolvedImages.map((resolvedImage, i) => {
-							resolvedImage.index = i;
+						resolvedImages.map((resolvedImage, index) => {
+							if (this.renderIndex !== 0) {
+								index = this.renderIndex;
+							}
+							resolvedImage.index = index;
 
 							resolvedImage.masonryDimensions =
 								this._getCalculatedDimensions(
@@ -508,7 +515,7 @@ export default class MasonryList extends React.PureComponent {
 								this.props.onImagesResolveEnd &&
 								this.doneTotal === this.props.images.length
 							) {
-								this.props.onImagesResolveEnd(this.state._sortedData);
+								this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
 							}
 						});
 					});
@@ -568,7 +575,7 @@ export default class MasonryList extends React.PureComponent {
 									this.props.onImagesResolveEnd &&
 									this.doneTotal === this.props.images.length
 								) {
-									this.props.onImagesResolveEnd(this.state._sortedData);
+									this.props.onImagesResolveEnd(this.state._sortedData, this.doneTotal);
 								}
 							});
 					}
