@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, InteractionManager } from "react-native";
+import { FlatList, InteractionManager, View } from "react-native";
 import PropTypes from "prop-types";
 
 import { resolveImage, resolveLocal } from "./lib/model";
