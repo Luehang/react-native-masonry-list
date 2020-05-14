@@ -617,7 +617,8 @@ export default class MasonryList extends React.PureComponent {
 				}}
 				contentContainerStyle={[{
 					flexDirection: "row",
-					width: "100%"
+					width: "100%",
+					paddingTop: this.state._headerComponentHeight,
 				}, this.props.listContainerStyle]}
 				removeClippedSubviews={true}
 				onEndReachedThreshold={this.props.onEndReachedThreshold}
@@ -635,7 +636,7 @@ export default class MasonryList extends React.PureComponent {
 				}}
 				ListHeaderComponent={ () => this._renderListHeader() }
 				ListHeaderComponentStyle={{
-					top: -this.state._headerComponentHeight,
+					top: 0,
 					position:'absolute',
 					width:'100%'
 				}}
