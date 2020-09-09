@@ -49,6 +49,7 @@ class Masonry extends React.PureComponent {
         onScrollBeginDrag: PropTypes.func,
         onImageResolved: PropTypes.func,
         onImagesResolveEnd: PropTypes.func,
+        keyboardShouldPersistTaps: PropTypes.func,
 
         onPressImage: PropTypes.func,
         onLongPressImage: PropTypes.func,
@@ -230,6 +231,7 @@ class Masonry extends React.PureComponent {
                     renderIndividualFooter={this.props.renderIndividualFooter}
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
                     onScrollBeginDrag={this.props.onScrollBeginDrag}
+                    keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
 
                     customImageComponent={this.props.customImageComponent}
                     customImageProps={this.props.customImageProps}
