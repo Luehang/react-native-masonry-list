@@ -53,6 +53,7 @@ export default class MasonryList extends React.PureComponent {
 			PropTypes.func,
 			PropTypes.node
 		]),
+		onScrollBeginDrag: PropTypes.func,
 
 		onImageResolved: PropTypes.func,
 		onImagesResolveEnd: PropTypes.func,
@@ -611,6 +612,7 @@ export default class MasonryList extends React.PureComponent {
 				refreshing={this.props.refreshing}
 				onRefresh={this.props.onRefresh}
 				{...this.props.masonryFlatListColProps}
+				onScrollBeginDrag={this.props.onScrollBeginDrag}
 				onEndReached={this._onCallEndReach}
 				initialNumToRender={
 					this.props.initialColToRender

@@ -46,7 +46,7 @@ class Masonry extends React.PureComponent {
             PropTypes.func,
             PropTypes.node
         ]),
-
+        onScrollBeginDrag: PropTypes.func,
         onImageResolved: PropTypes.func,
         onImagesResolveEnd: PropTypes.func,
 
@@ -229,6 +229,7 @@ class Masonry extends React.PureComponent {
                     renderIndividualHeader={this.props.renderIndividualHeader}
                     renderIndividualFooter={this.props.renderIndividualFooter}
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
+                    onScrollBeginDrag={this.props.onScrollBeginDrag}
 
                     customImageComponent={this.props.customImageComponent}
                     customImageProps={this.props.customImageProps}
