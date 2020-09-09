@@ -46,7 +46,7 @@ class Masonry extends React.PureComponent {
             PropTypes.func,
             PropTypes.node
         ]),
-        onScrollBeginDrag: PropTypes.func,
+        keyboardDismissMode: PropTypes.oneOf(['none', 'on-drag', 'interactive']),
         onImageResolved: PropTypes.func,
         onImagesResolveEnd: PropTypes.func,
         keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'never', 'handled',]),
@@ -230,7 +230,7 @@ class Masonry extends React.PureComponent {
                     renderIndividualHeader={this.props.renderIndividualHeader}
                     renderIndividualFooter={this.props.renderIndividualFooter}
                     masonryFlatListColProps={this.props.masonryFlatListColProps}
-                    onScrollBeginDrag={this.props.onScrollBeginDrag}
+                    keyboardDismissMode={this.props.keyboardDismissMode}
                     keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
 
                     customImageComponent={this.props.customImageComponent}
