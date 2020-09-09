@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, InteractionManager } from "react-native";
+import { FlatList, InteractionManager, ScrollView } from "react-native";
 import PropTypes from "prop-types";
 
 import { resolveImage, resolveLocal } from "./lib/model";
@@ -54,7 +54,7 @@ export default class MasonryList extends React.PureComponent {
 			PropTypes.node
 		]),
 		onScrollBeginDrag: PropTypes.func,
-		keyboardShouldPersistTaps: PropTypes.func,
+		keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'never', 'handled',]),
 
 		onImageResolved: PropTypes.func,
 		onImagesResolveEnd: PropTypes.func,

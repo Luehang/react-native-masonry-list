@@ -49,7 +49,7 @@ class Masonry extends React.PureComponent {
         onScrollBeginDrag: PropTypes.func,
         onImageResolved: PropTypes.func,
         onImagesResolveEnd: PropTypes.func,
-        keyboardShouldPersistTaps: PropTypes.func,
+        keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'never', 'handled',]),
 
         onPressImage: PropTypes.func,
         onLongPressImage: PropTypes.func,
