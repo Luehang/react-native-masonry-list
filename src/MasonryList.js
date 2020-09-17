@@ -53,6 +53,7 @@ export default class MasonryList extends React.PureComponent {
 			PropTypes.func,
 			PropTypes.node
 		]),
+		onScrollBeginDrag: PropTypes.func,
 		keyboardDismissMode: PropTypes.oneOf(['none', 'on-drag', 'interactive']),
 		keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'never', 'handled',]),
 
@@ -613,6 +614,7 @@ export default class MasonryList extends React.PureComponent {
 				refreshing={this.props.refreshing}
 				onRefresh={this.props.onRefresh}
 				{...this.props.masonryFlatListColProps}
+				onScrollBeginDrag={this.props.onScrollBeginDrag}
 				keyboardDismissMode={this.props.keyboardDismissMode}
 				keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
 				onEndReached={this._onCallEndReach}
