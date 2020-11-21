@@ -173,7 +173,7 @@ export default class MasonryList extends React.PureComponent {
 				);
 			}
 		} else {
-			if (_.isEqual(nextProps.images, this.props.images)) {
+			if (!_.isEqual(nextProps.images, this.props.images)) {
 				this.unsortedIndex = 0;
 				this.renderIndex = 0;
 				this.columnHeightTotals = [];
