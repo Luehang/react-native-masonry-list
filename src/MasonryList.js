@@ -1,11 +1,10 @@
 import React from "react";
 import { FlatList, InteractionManager } from "react-native";
 import PropTypes from "prop-types";
-
 import { resolveImage, resolveLocal } from "./lib/model";
 import Task from "./lib/task";
 import { sequence } from "./lib/monad-basic";
-
+import _ from 'lodash';
 import Column from "./Column";
 
 import {
@@ -174,7 +173,7 @@ export default class MasonryList extends React.PureComponent {
 				);
 			}
 		} else {
-			if (nextProps.images !== this.props.images) {
+			if (_.isEqual(nextProps.images, this.props.images)) {
 				this.unsortedIndex = 0;
 				this.renderIndex = 0;
 				this.columnHeightTotals = [];

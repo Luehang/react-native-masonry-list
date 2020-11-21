@@ -58,6 +58,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "24.1.0",
     "jest": "24.1.0",
+    "lodash": "^4.17.20",
     "metro-react-native-babel-preset": "0.51.1",
     "react-test-renderer": "16.6.3",
     "babel-eslint": "^10.0.1",
