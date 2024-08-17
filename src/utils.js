@@ -1,26 +1,12 @@
 import React from "react";
 
 export function getItemSource(item, itemSource) {
-    switch (itemSource.length) {
-        case 0:
-            return item;
-        case 1:
-            return item[itemSource[0]];
-        case 2:
-            return item[itemSource[0]][itemSource[1]];
-        case 3:
-            return item[itemSource[0]][itemSource[1]][itemSource[2]];
-        case 4:
-            return item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]];
-        case 5:
-            return item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]][itemSource[4]];
-        case 6:
-            return item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]][itemSource[4]][itemSource[5]];
-        case 7:
-            return item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]][itemSource[4]][itemSource[5]][itemSource[6]];
-        default:
-            return undefined;
+    let result = item;
+    for (let i = 0; i < itemSource.length; i++) {
+        if (result == null) return undefined;
+        result = result[itemSource[i]];
     }
+    return result;
 }
 
 export function setItemSource(item, itemSource, newValue) {
