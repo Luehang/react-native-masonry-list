@@ -26,6 +26,9 @@ class Masonry extends React.PureComponent {
         backgroundColor: PropTypes.string,
         imageContainerStyle: PropTypes.object,
         listContainerStyle: PropTypes.object,
+	
+	ListHeaderComponent: PropTypes.node,
+	    
         renderIndividualHeader: PropTypes.oneOfType([
             PropTypes.func,
             PropTypes.node
@@ -216,6 +219,8 @@ class Masonry extends React.PureComponent {
                     //     this.props.masonryListRef &&
                     //         this.props.masonryListRef(component);
                     // }}
+
+		    ListHeaderComponent={this.props.ListHeaderComponent}
 
                     images={this.props.images}
                     columns={this.props.columns}

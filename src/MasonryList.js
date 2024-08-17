@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, InteractionManager } from "react-native";
+import { FlatList, InteractionManager, View } from "react-native";
 import PropTypes from "prop-types";
 
 import { resolveImage, resolveLocal } from "./lib/model";
@@ -43,7 +43,9 @@ export default class MasonryList extends React.PureComponent {
 		]),
 		masonryFlatListColProps: PropTypes.object,
 		rerender: PropTypes.bool,
-
+		
+		ListHeaderComponent: PropTypes.node,
+		
 		customImageComponent: PropTypes.oneOfType([
 			PropTypes.func,
 			PropTypes.node
@@ -67,7 +69,8 @@ export default class MasonryList extends React.PureComponent {
 	};
 
 	state = {
-		_sortedData: []
+		_sortedData: [],
+		_headerComponentHeight: 0,
 	}
 
 	doneTotal = 0;
@@ -593,6 +596,16 @@ export default class MasonryList extends React.PureComponent {
 			this.props.onEndReached(info);
 		}
 	}
+	
+	_renderListHeader = ()=>{
+		return (
+			<View onLayout={(e) => {
+				this.setState({ _headerComponentHeight: e.nativeEvent.layout.height })
+			}}>
+				{this.props.ListHeaderComponent}
+			</View>
+		)
+	}
 
 	render() {
 		return (
@@ -604,7 +617,8 @@ export default class MasonryList extends React.PureComponent {
 				}}
 				contentContainerStyle={[{
 					flexDirection: "row",
-					width: "100%"
+					width: "100%",
+					paddingTop: this.state._headerComponentHeight,
 				}, this.props.listContainerStyle]}
 				removeClippedSubviews={true}
 				onEndReachedThreshold={this.props.onEndReachedThreshold}
@@ -619,6 +633,12 @@ export default class MasonryList extends React.PureComponent {
 				}
 				keyExtractor={(item, index) => {
 					return "COLUMN-" + index.toString() + "/"; // + (this.props.columns - 1);
+				}}
+				ListHeaderComponent={ () => this._renderListHeader() }
+				ListHeaderComponentStyle={{
+					top: 0,
+					position:'absolute',
+					width:'100%'
 				}}
 				data={this.state._sortedData}
 				renderItem={({ item, index }) => {
