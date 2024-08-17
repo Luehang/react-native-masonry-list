@@ -10,31 +10,12 @@ export function getItemSource(item, itemSource) {
 }
 
 export function setItemSource(item, itemSource, newValue) {
-    switch (itemSource.length) {
-        case 1:
-            item[itemSource[0]] = newValue;
-            break;
-        case 2:
-            item[itemSource[0]][itemSource[1]] = newValue;
-            break;
-        case 3:
-            item[itemSource[0]][itemSource[1]][itemSource[2]] = newValue;
-            break;
-        case 4:
-            item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]] = newValue;
-            break;
-        case 5:
-            item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]][itemSource[4]] = newValue;
-            break;
-        case 6:
-            item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]][itemSource[4]][itemSource[5]] = newValue;
-            break;
-        case 7:
-            item[itemSource[0]][itemSource[1]][itemSource[2]][itemSource[3]][itemSource[4]][itemSource[5]][itemSource[6]] = newValue;
-            break;
-        default:
-            return undefined;
+    let target = item;
+    for (let i = 0; i < itemSource.length - 1; i++) {
+        target = target[itemSource[i]];
     }
+    target[itemSource[itemSource.length - 1]] = newValue;
+
     return item;
 }
 
