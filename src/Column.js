@@ -12,6 +12,7 @@ export default class Column extends React.PureComponent {
 		initialNumInColsToRender: PropTypes.number,
 		layoutDimensions: PropTypes.object.isRequired,
 		columnKey: PropTypes.string,
+		columnWindowSize: PropTypes.number,
 		backgroundColor: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
 		spacing: PropTypes.number,
@@ -107,6 +108,7 @@ export default class Column extends React.PureComponent {
 				keyExtractor={(item, index) => {
 					return this._keyExtractor(item, index, this.props.colIndex);
 				}}
+				windowSize={this.props.columnWindowSize}
 				initialNumToRender={this.props.initialNumInColsToRender}
 				removeClippedSubviews={true}
 				renderItem={this._renderItem}

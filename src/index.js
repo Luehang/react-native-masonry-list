@@ -22,13 +22,14 @@ class Masonry extends React.PureComponent {
         spacing: PropTypes.number,
         initialColToRender: PropTypes.number,
         initialNumInColsToRender: PropTypes.number,
+        columnWindowSize: PropTypes.number,
         sorted: PropTypes.bool,
         backgroundColor: PropTypes.string,
         imageContainerStyle: PropTypes.object,
         listContainerStyle: PropTypes.object,
-	
+
 	ListHeaderComponent: PropTypes.node,
-	    
+
         renderIndividualHeader: PropTypes.oneOfType([
             PropTypes.func,
             PropTypes.node
@@ -227,6 +228,7 @@ class Masonry extends React.PureComponent {
                     spacing={this.props.spacing}
                     initialColToRender={this.props.initialColToRender}
                     initialNumInColsToRender={this.props.initialNumInColsToRender}
+                    columnWindowSize={this.props.columnWindowSize}
                     sorted={this.props.sorted}
                     backgroundColor={this.props.backgroundColor}
                     imageContainerStyle={this.props.imageContainerStyle}
