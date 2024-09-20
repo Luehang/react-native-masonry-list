@@ -29,6 +29,7 @@ export default class MasonryList extends React.PureComponent {
 		spacing: PropTypes.number,
 		initialColToRender: PropTypes.number,
 		initialNumInColsToRender: PropTypes.number,
+		columnWindowSize: PropTypes.number,
 		sorted: PropTypes.bool,
 		backgroundColor: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
@@ -43,9 +44,9 @@ export default class MasonryList extends React.PureComponent {
 		]),
 		masonryFlatListColProps: PropTypes.object,
 		rerender: PropTypes.bool,
-		
+
 		ListHeaderComponent: PropTypes.node,
-		
+
 		customImageComponent: PropTypes.oneOfType([
 			PropTypes.func,
 			PropTypes.node
@@ -596,7 +597,7 @@ export default class MasonryList extends React.PureComponent {
 			this.props.onEndReached(info);
 		}
 	}
-	
+
 	_renderListHeader = ()=>{
 		return (
 			<View onLayout={(e) => {
@@ -653,6 +654,7 @@ export default class MasonryList extends React.PureComponent {
 							spacing={this.props.spacing}
 							key={`MASONRY-COLUMN-${index}`}
 							colIndex={index}
+							columnWindowSize={this.props.columnWindowSize}
 
 							customImageComponent={this.props.customImageComponent}
 							customImageProps={this.props.customImageProps}
